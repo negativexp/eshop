@@ -21,7 +21,11 @@ connectToMongoDB()
 
 //backend api
 app.get("/api", (req, res) => {
-    res.json({ "users":  ["user1", "user2", "user3", "user4"] })
+    // res.json({ "users":  ["user1", "user2", "user3", "user4"] })
+    const collection = client.db("eshop").collection("products");
+    const products = collection.find().toArray()
+    res.json(products)
+    console.log("done")
 })
 
 app.get("/api/products/", async (req, res) => {

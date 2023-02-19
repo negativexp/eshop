@@ -24,12 +24,18 @@ function App() {
         <section id="notebooks">
           <h1>Notebooky</h1>
           <div id="products-container">
-            {backendData.map(item => (
-              <>
-              <p>item:</p>
-              <p>{item.title }</p>
-              </>
-            ))}
+            <Product>
+
+            </Product>            <Product>
+              
+            </Product>
+            <Product>
+              
+              </Product>
+              <Product>
+              
+              </Product>
+              
           </div>
           <button>nacist vice</button>
         </section>
