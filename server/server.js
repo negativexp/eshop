@@ -4,7 +4,8 @@ const { connect } = require('http2');
 const app = express()
 
 //serve static files
-app.use("/images/products", express.static("images"))
+// app.use("/images/products", express.static("images"))
+app.use(express.static("images/products"))
 
 //mongodb connect
 const uri = "mongodb+srv://user1:user1@cluster0.uqzmjre.mongodb.net/?retryWrites=true&w=majority"

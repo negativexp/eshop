@@ -1,6 +1,5 @@
 import React, {useState, useEffect} from "react";
 import "./App.css";
-import testimg from "./test.webp";
 import {Header, Product} from "./components.js"
 
 function App() {
@@ -24,18 +23,12 @@ function App() {
         <section id="notebooks">
           <h1>Notebooky</h1>
           <div id="products-container">
-            <Product>
-
-            </Product>            <Product>
-              
-            </Product>
-            <Product>
-              
-              </Product>
-              <Product>
-              
-              </Product>
-              
+              {backendData.map((product) => (
+                <Product img="swag.png">
+                  <h1>{product.productTitle}</h1>
+                  <p>{product.productShortDescription}</p>
+                </Product>
+              ))}
           </div>
           <button>nacist vice</button>
         </section>
