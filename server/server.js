@@ -1,10 +1,10 @@
 const { MongoClient } = require('mongodb');
 const express = require("express");
 const { connect } = require('http2');
+const path = require('path');
 const app = express()
+const currentPath = path.join(__dirname, '');
 
-//serve static files
-// app.use("/images/products", express.static("images"))
 app.use(express.static("images/products"))
 
 //mongodb connect
@@ -22,7 +22,7 @@ connectToMongoDB()
 
 // path to admin page
 app.get("/admin", (req, res) => {
-  res.sendFile("admin_index.html");
+    res.sendFile(currentPath + "/admin/admin_index.html");
 });
 
 

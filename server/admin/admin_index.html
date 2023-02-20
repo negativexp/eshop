@@ -44,9 +44,9 @@
 </head>
 <body>
   <h1>Admin Panel - Add Product</h1>
-  <form method="post" action="add_product.php">
-    <label for="name">Product Name</label>
-    <input type="text" id="name" name="name" placeholder="Enter product name...">
+  <form>
+    <label for="name">Product Title</label>
+    <input type="text" id="title" name="title" placeholder="Enter product title...">
     
     <label for="description">Product Description</label>
     <textarea id="description" name="description" placeholder="Enter product description..."></textarea>
@@ -54,6 +54,9 @@
     <label for="price">Product Price</label>
     <input type="text" id="price" name="price" placeholder="Enter product price...">
     
+    <label for="price">Product ID</label>
+    <input type="text" id="product_id" name="product_id" placeholder="Enter product ID..">
+
     <label for="category">Product Category</label>
     <select id="category" name="category">
       <option value="electronics">Electronics</option>
@@ -61,17 +64,26 @@
       <option value="home">Home</option>
     </select>
     
-    <input type="submit" value="Add Product">
+    <input type="submit" value="Add Product" onclick="senddata()">
   </form>
 
   <script>
-    // TODO: send product informations to database
     function senddata() {
       const apiUrl = new URL("http://localhost:5000/api/addproduct/");
+
+
+      // FIX: not posting data
+      const product_data = {
+            productTitle: title + "#" + product_id,
+            productShortDescription: description,
+            productCategory: category,
+            productID: product_id
+        };
+
       fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(), // <- ??
+        body: JSON.stringify(product_data),
         });
     }
   </script>
