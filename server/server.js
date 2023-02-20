@@ -20,22 +20,25 @@ async function connectToMongoDB() {
 }
 connectToMongoDB()
 
-//backend api
-app.get("/api", (req, res) => {
-    // res.json({ "users":  ["user1", "user2", "user3", "user4"] })
-    const collection = client.db("eshop").collection("products");
-    const products = collection.find().toArray()
-    res.json(products)
-    console.log("done")
-})
+// path to admin page
+app.get("/admin", (req, res) => {
+  res.sendFile("admin_index.html");
+});
 
+
+// api endpoint that returns all products from database
 app.get("/api/products/", async (req, res) => {
     const collection = client.db("eshop").collection("products");
     const products = await collection.find().toArray()
     res.json(products)
 })
 
+// TODO: get request from admin_index and add it to database
+app.get("/api/addproduct/", async (req, res) => {
+    
+})
+
 //listen
 app.listen(5000, () => {
-    console.log("server started on port 5000!!")
+    console.log("server started on port 5000")
 })
