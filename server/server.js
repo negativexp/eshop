@@ -33,16 +33,16 @@ app.get("/api/products/", async (req, res) => {
     res.json(products)
 })
 
-<<<<<<< Updated upstream
-// TODO: get request from admin_index and add it to database
-app.get("/api/addproduct/", async (req, res) => {
-    
-=======
+// api endpoint that returns all categories from database
 app.get("/api/categories/", async (req, res) => {
     const collection = client.db("eshop").collection("categories");
     const categories = await collection.find().toArray()
     res.json(categories)
->>>>>>> Stashed changes
+})
+
+// TODO: get request from admin_index and add it to database
+app.get("/api/addproduct/", async (req, res) => {
+    
 })
 
 //listen
