@@ -35,19 +35,15 @@ export function Header() {
   function dropDownMenu(category) {
     if(category === "electronics") {
       console.log("electronics")
-      selection = 0
     }
     if(category === "sport") {
       console.log("sport")
-      selection = 1
     }
     if(category === "house") {
       console.log("house")
-      selection = 2
     }
     if(category === "garden") {
       console.log("garden")
-      selection = 3
     }
     showDropDownMenu()
   }
