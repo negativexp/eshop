@@ -7,7 +7,7 @@ async function MongoDeleteAll() {
         await client.connect();
         console.log('Connected to MongoDB Atlas');
     
-        const collection = client.db("eshop").collection("products")
+        const collection = client.db("eshop").collection("categories")
         const result = await collection.deleteMany({});
         console.log(`${result.deletedCount} documents deleted`);
     
@@ -24,33 +24,52 @@ async function MongoInsertObject() {
         console.log('Connected to MongoDB Atlas')
 
         const collection = client.db("eshop").collection("products")
-        var count = await collection.countDocuments()
-        if(count.toString() === 0) {
-            count = "ahoj"
-        }
-        if(count.toString() === 1) {
-            count = "00000" + count
-        }
-        else if(count.toString() === 2) {
-            count = "0000" + count
-        }
-        else if(count.toString() === 3) {
-            count = "000" + count
-        }
-        else if(count.toString() === 4) {
-            count = "00" + count
-        }
-        else if(count.toString() === 5) {
-            count = "0" + count
-        }
-  
+        const categories = client.db("eshop").collection("categories")
+        categories.find().forEach(function(doc) {
+            console.log(doc.subCategories);
+          }, function(err) {
+            if (err) {
+              console.log(err);
+            }
+          });
+        
+        const count = await collection.countDocuments()
+
         const product = {
             productTitle: "item-title #" + count,
             productShortDescription: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam erat volutpat.",
+            productCategory: categories[0],
             productID: count
         };
   
         const result = await collection.insertOne(product)
+        console.log("1 product inserted")
+        
+        } catch (err) {
+            console.error(err)
+        } finally {
+            await client.close()
+    }
+}
+
+async function MongoInsertCategory() {
+    try {
+        await client.connect()
+        console.log('Connected to MongoDB Atlas')
+
+        const collection = client.db("eshop").collection("categories")
+        const count = await collection.countDocuments()
+
+        const category = {
+            category: "garden",
+            subCategories: ["Sekačky", "Skleníky", "Brusky"]
+            // electronics: ["CPU", "GPU", "Herní konzole"],
+            // sport: ["Zimní", "Fitness", "Výživa"],
+            // house: ["Mopy", "Pánve", "Prášky na praní"],
+            // garden: ["Sekačky", "Skleníky", "Brusky"]
+        };
+  
+        const result = await collection.insertOne(category)
         console.log("1 product inserted")
         
         } catch (err) {
@@ -79,6 +98,6 @@ async function deleteObjectsByCondition() {
     }
 }
 
+//MongoInsertCategory().catch(console.dir)
 //MongoDeleteAll().catch(console.dir);
 MongoInsertObject().catch(console.dir);
-// deleteObjectsByCondition().catch(console.dir);

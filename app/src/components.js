@@ -16,15 +16,8 @@ export function Product(props) {
   )
 }
 
-const subCatogeries = {
-  elecontrins: ["CPU", "GPU", "Herní konzole"],
-  sport: ["Zimní", "Fitness", "Výživa"],
-  house: ["Mopy", "Pánve", "Prášky na praní"],
-  garden: ["Sekačky", "Skleníky", "Brusky"]
-}
-var selection = 0
 
-export function Header() {
+export function Header(props) {
   const menu = document.getElementById("dropdown-menu")
   function hideDropDownMenu() {
     menu.style.visibility = "collapse"
@@ -72,8 +65,8 @@ export function Header() {
       <div id="dropdown-menu">
         <div className="dropdown-menu-background" onClick={() => hideDropDownMenu()}></div>
         <div className="dropdown-menu-active">
-          {selection == 1 ? <p>bruh</p> : <p>nebruh</p> 
-          }
+          <h1>testing element</h1>
+          {props.children}
         </div>  
       </div>
     </header>
