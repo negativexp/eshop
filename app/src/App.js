@@ -6,6 +6,7 @@ function App() {
 
   const [APIprdocuts, setAPIprdocuts] = useState([])
   const [APIcategories, setAPIcategories] = useState([])
+  const [visibleProducts, setVisibleProducts] = useState([])
 
   useEffect(() => {
     async function fetchData() {
@@ -17,12 +18,6 @@ function App() {
     }
     fetchData()
   }, [])
-
-  // APIcategories.forEach((item) => {
-  //   console.log(item)
-  // })
-
-  var lastOpenedCategories
 
   function displayCategories(category) {
     document.getElementById("header-subCategories-empty").style.visibility = "visible"
@@ -42,24 +37,74 @@ function App() {
     document.getElementById("header-subCategories-empty").style.visibility = "collapse"
   }
 
+  function search() {
+    var searchValue = document.getElementById("searchbar").value
+    searchValue = searchValue.toLowerCase()
+    const matchingObjects = [];
+    for (let i = 0; i < APIprdocuts.length; i++) {
+      const obj = APIprdocuts[i];
+      for (let prop in obj) {
+        if (Array.isArray(obj[prop])) {
+          if (obj[prop].includes(searchValue)) {
+            matchingObjects.push(obj);
+            break;
+          }
+        } else {
+          if (obj[prop] === searchValue) {
+            matchingObjects.push(obj);
+            break;
+          }
+        }
+      }
+    }
+    const newArray = matchingObjects.map(item => Object.fromEntries(Object.entries(item)));
+    console.log(newArray)
+    // const newArray = [Object.fromEntries(Object.entries(APIprdocuts))];
+    // console.log(newArray)
+    setVisibleProducts(newArray)
+  }
+
+  function searchBySubCategory(item) {
+    document.getElementById("searchbar").value = item
+    document.getElementById("searchbutton").click()
+  } 
+
   return (
     <div className="App">
       <header>
-        <div className="logo-name">
-          <h1>logo</h1>
-          <h1>name</h1>
+        <div className="header-top">
+          <div className="logo-name">
+            <h1>nezukoketamin</h1>
+          </div>
+          <div className="header-search">
+            <input id="searchbar" type="text"/>
+            <button id="searchbutton" onClick={() => search()}>search</button>
+          </div>
         </div>
         <div className="header-categories">
         {APIcategories.map((item) => (
           <button onClick={() => displayCategories(item.category)}>{item.category}</button>
         ))}
         </div>
-        <div className="header-subCategories">
-          <SubCategories values={APIcategories}/>
+          <div className="header-subCategories">
+            {APIcategories.map((item) => (
+             <div className="sub-category" id={item.category}>
+                <p>Všechno</p>
+                {item.subCategories.map((item) => (
+                  <button onClick={() => searchBySubCategory(item)}>{item}</button>
+                ))}
+              </div>
+           ))}
           <div id="header-subCategories-empty" onClick={() => hideSubCategories()}></div>
         </div>
       </header>
         <main>
+        {visibleProducts.map(product => (
+          <Product>
+            <h1>{product.productTitle}</h1>
+            <p>{product.productShortDescription}</p>
+          </Product>
+        ))}
         </main>
     </div>
   );

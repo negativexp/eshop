@@ -7,7 +7,7 @@ async function MongoDeleteAll() {
         await client.connect();
         console.log('Connected to MongoDB Atlas');
     
-        const collection = client.db("eshop").collection("categories")
+        const collection = client.db("eshop").collection("products")
         const result = await collection.deleteMany({});
         console.log(`${result.deletedCount} documents deleted`);
     
@@ -40,7 +40,7 @@ async function MongoInsertObject() {
         const product = {
             productTitle: "item-title #" + count,
             productShortDescription: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam erat volutpat.",
-            productCategory: categories[0],
+            productCategory: "bruh",
             productID: count
         };
   
@@ -141,7 +141,7 @@ async function deleteObjectsByCondition() {
     }
 }
 
-test().catch(console.dir)
+//test().catch(console.dir)
 //MongoInsertCategory().catch(console.dir)
-//MongoDeleteAll().catch(console.dir);
+MongoDeleteAll().catch(console.dir);
 //MongoInsertObject().catch(console.dir);
