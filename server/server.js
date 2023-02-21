@@ -33,7 +33,6 @@ app.get("/admin", (req, res) => {
     res.sendFile(currentPath + "dashboard.html");
 });
 
-
 // path to page for adding products into DB
 app.get("/productform", (req, res) => {
     const currentPath = path.join(__dirname, '/admin/');
@@ -46,21 +45,22 @@ app.get("/api/products/", async (req, res) => {
     const collection = client.db("eshop").collection("products");
     const products = await collection.find().toArray()
     res.json(products)
-})
+});
 
 // api endpoint that returns all categories from database
 app.get("/api/categories/", async (req, res) => {
     const collection = client.db("eshop").collection("categories");
     const categories = await collection.find().toArray()
     res.json(categories)
-})
+});
 
-// TODO: get request from admin_index and add it to database
+// api endpoint to add products into database
 app.post("/api/addproduct/", async (req, res) => {
     console.log(req.body.productdata);
-})
+    res.status(200).send("");
+});
 
 // listen
 app.listen(5000, () => {
     console.log("server started on port 5000")
-})
+});

@@ -44,7 +44,7 @@
 </head>
 <body>
   <h1>Admin Panel - Add Product</h1>
-  <form>
+  <form onsubmit="return false">
     <label for="name">Product Title</label>
     <input type="text" id="title" name="title" placeholder="Enter product title...">
 
@@ -52,7 +52,7 @@
     <textarea id="description" name="description" placeholder="Enter product description..."></textarea>
     
     <label for="description">Product Long Description</label>
-    <textarea id="description" name="description" placeholder="Enter product description..."></textarea>
+    <textarea id="longdescription" name="longdescription" placeholder="Enter long product description..."></textarea>
     
     <label for="price">Product Price</label>
     <input type="text" id="price" name="price" placeholder="Enter product price...">
@@ -66,32 +66,32 @@
       <option value="garden">Garden</option>
     </select>
     <label for="categories">Product sub-category</label>
-    <select id="categories" name="categories">
+    <select id="subcategories" name="subcategories">
       <option value="gpu">GPU</option>
       <option value="cpu">CPU</option>
       <option value="herni konzole">Herní konzole</option>
     </select>
     
-    <input type="submit" value="Add Product" onclick="senddata()">
+    <button type="submit" onclick="senddata()">Add product</button>
   </form>
 
   <script>
     function senddata() {
-
       const apiUrl = new URL("http://localhost:5000/api/addproduct/");
 
-      // FIX: not posting data
       const product_data = {
-            productTitle: title + "#" + product_id,
-            productShortDescription: description,
-            productCategory: category,
-            productID: product_id
+            productTitle: title.value,
+            productShortDescription: description.value,
+            productLongDescription: longdescription.value,
+            productCategory: category.value,
+            productSubCategory: subcategories.value,
+
         };
 
       fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({productdata: "test"}),
+        body: JSON.stringify({productdata: product_data}),
         });
     }
 
