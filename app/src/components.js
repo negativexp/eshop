@@ -1,4 +1,4 @@
-import React from "react"
+import React, {useState, useEffect} from "react";
 
 export function Product(props) {
   return(
@@ -13,6 +13,21 @@ export function Product(props) {
         <button>Add to cart</button>
       </div>
     </div>
+  )
+}
+
+export function SubCategories(props) {
+  return(
+    <>
+      {props.values.map((item) => (
+        <div className="sub-category">
+          {item.subCategories.map((item) => (
+            <p>{item}</p>
+          ))}
+        </div>
+      ))}
+    </>
+
   )
 }
 

@@ -10,23 +10,24 @@ body {
     flex-flow: column;
     overflow: hidden;
 }
-
-header {
-    width: 100%;
+.logo-name {
+    background-color: yellow;
 }
-header li {
-    cursor: pointer;
-}
-header ul {
-    background-color: red;
-    padding: 10px;
+.header-categories {
+    color: white;
     display: flex;
-    align-items: center;
-    list-style: none;
-    gap: 20px;
-    /* background-color: limegreen; */
-    overflow-x: scroll;
-    overflow-y: hidden;
+    gap: 10px;
+    background-color: blue;
+}
+.header-subCategories {
+    background-color: red;
+}
+.sub-category {
+    position: absolute;
+    background-color: aqua;
+    width: 90%;
+    left: 50%;
+    transform: translateX(-50%);
 }
 header ul::-webkit-scrollbar{
     height: 4px;
@@ -36,44 +37,6 @@ header ul::-webkit-scrollbar{
 header ul::-webkit-scrollbar-thumb:horizontal{
     background: #000;
     border-radius: 10px;
-}
-#dropdown-menu {
-    width: 100%;
-    height: 100%;
-    visibility: collapse;
-}
-.dropdown-menu-background {
-    position: absolute;
-    width: 100%;
-    height: 100%;
-    background-color: black;
-    opacity: 0.5;
-}
-.dropdown-menu-active {
-    position: absolute;
-    width: 90%;
-    left: 50%;
-    transform: translateX(-50%);
-    background-color: yellow;
-}
-.dropdown-menu-active div {
-    width: 100%;
-    background-color: green;
-}
-.dropdown-menu-visible {
-    height: 50%;
-}
-
-.logo-name {
-    background-color: yellow;
-    display: flex;
-}
-.header-scrollbar {
-    background-color: yellow;
-    position: absolute;
-    width: 100px;
-    height: 10px;
-    top: calc(100% - 10px);
 }
 
 main {
