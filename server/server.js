@@ -57,6 +57,10 @@ app.get("/api/categories/", async (req, res) => {
 // api endpoint to add products into database
 app.post("/api/addproduct/", async (req, res) => {
     console.log(req.body.productdata);
+
+    const collection = client.db("eshop").collection("products");
+    await collection.insertOne(req.body.productdata);
+
     res.status(200).send("");
 });
 
