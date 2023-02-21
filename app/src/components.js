@@ -20,7 +20,7 @@ export function SubCategories(props) {
   return(
     <>
       {props.values.map((item) => (
-        <div className="sub-category">
+        <div className="sub-category" id={item.category}>
           {item.subCategories.map((item) => (
             <p>{item}</p>
           ))}

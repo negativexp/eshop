@@ -22,8 +22,24 @@ function App() {
   //   console.log(item)
   // })
 
-  function displayCategories() {
-    console.log("hello")
+  var lastOpenedCategories
+
+  function displayCategories(category) {
+    document.getElementById("header-subCategories-empty").style.visibility = "visible"
+    APIcategories.forEach((item) => {
+      if(item.category == category) {
+        document.getElementById(item.category).style.visibility = "visible"
+      } else {
+        document.getElementById(item.category).style.visibility = "collapse"
+      }
+    })
+  }
+
+  function hideSubCategories() {
+    APIcategories.forEach((item) => {
+      document.getElementById(item.category).style.visibility = "collapse"
+    })
+    document.getElementById("header-subCategories-empty").style.visibility = "collapse"
   }
 
   return (
@@ -35,46 +51,15 @@ function App() {
         </div>
         <div className="header-categories">
         {APIcategories.map((item) => (
-          <a onClick={() => displayCategories()}>{item.category}</a>
+          <button onClick={() => displayCategories(item.category)}>{item.category}</button>
         ))}
         </div>
         <div className="header-subCategories">
           <SubCategories values={APIcategories}/>
+          <div id="header-subCategories-empty" onClick={() => hideSubCategories()}></div>
         </div>
       </header>
         <main>
-          <section>
-            <h1>produtky</h1>
-            <div id="products-container">
-                {APIprdocuts.map((product) => (
-                  <Product img="swag.png">
-                    <h1>{product.productTitle}</h1>
-                    <p>{product.productShortDescription}</p>
-                  </Product>
-                ))}
-            </div>
-            <h1>kategorie</h1>
-            {APIcategories.map((item) => (
-              <>
-                <h1>{item.category}</h1>
-                {item.subCategories.map((item) => (
-                  <p>{item}</p>
-                ))}
-              </>
-            ))}
-          </section>
-          <section id="notebooks">
-            <h1>Notebooky</h1>
-          </section>
-          <section id="gamingconsoles">
-            <h1>herni konzole</h1>
-          </section>
-          <section id="monitors">
-            <h1>monitory</h1>
-          </section>
-          <section id="gpus">
-            <h1>graficke karty</h1>
-          </section>
         </main>
     </div>
   );
