@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    
+    .wrapper {
+      display: flex;
+    }
+    
+    .sidebar {
+      width: 250px;
+      height: 100%;
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+    }
+    
+    .sidebar h2 {
+      margin-top: 0;
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    li a {
+      display: block;
+      padding: 10px;
+      color: #fff;
+      text-decoration: none;
+    }
+    
+    li a:hover {
+      background-color: #555;
+    }
+    
+    .main-content {
+      flex: 1;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="sidebar">
+      <h2>Dashboard</h2>
+      <ul>
+        <li><a href="/productform">Add product</a></li>
+        <li><a href="#">Users</a></li>
+        <li><a href="#">Settings</a></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </div>
+    <div class="main-content">
+      <h1>Welcome to the Dashboard</h1>
+      <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed mollis magna non dolor ullamcorper, eget egestas metus rhoncus. Donec id ligula in massa accumsan aliquet. Praesent dictum metus sed leo lacinia ullamcorper. Aenean vel pharetra justo.</p>
+    </div>
+  </div>
+</body>
+</html>

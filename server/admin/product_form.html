@@ -77,8 +77,8 @@
 
   <script>
     function senddata() {
-      const apiUrl = new URL("http://localhost:5000/api/addproduct/");
 
+      const apiUrl = new URL("http://localhost:5000/api/addproduct/");
 
       // FIX: not posting data
       const product_data = {
@@ -91,7 +91,7 @@
       fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(product_data),
+        body: JSON.stringify({productdata: "test"}),
         });
     }
 
