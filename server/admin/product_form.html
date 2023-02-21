@@ -40,6 +40,22 @@
     input[type=submit]:hover {
       background-color: #45a049;
     }
+    button {
+      background-color: green;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      font-weight: bold;
+      text-transform: uppercase;
+      border-radius: 4px;
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+      cursor: pointer;
+      transition: background-color 0.3s ease-in-out;
+    }
+    button:hover {
+      background-color: darkgreen;
+    }
   </style>
 </head>
 <body>
@@ -80,20 +96,21 @@
       const apiUrl = new URL("http://localhost:5000/api/addproduct/");
 
       const product_data = {
-            productTitle: title.value,
-            productShortDescription: description.value,
-            productLongDescription: longdescription.value,
-            productCategory: category.value,
-            productSubCategory: subcategories.value,
-
-        };
+        productTitle: title.value,
+        productShortDescription: description.value,
+        productLongDescription: longdescription.value,
+        productCategory: category.value,
+        productSubCategory: subcategories.value,
+      };
 
       fetch(apiUrl, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({productdata: product_data}),
         });
-    }
+
+      alert("Succesfully added product!")
+    };
 
     //added: Chaning sub categories based on main category
     const categories = document.getElementById("categories")
