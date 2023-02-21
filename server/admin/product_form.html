@@ -109,7 +109,9 @@
         body: JSON.stringify({productdata: product_data}),
         });
 
-      alert("Succesfully added product!")
+        if(confirm('Successfully added data. Click OK')){
+          window.location.reload();  
+        }
     };
 
     //added: Chaning sub categories based on main category
