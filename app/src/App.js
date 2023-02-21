@@ -22,29 +22,31 @@ function App() {
   //   console.log(item)
   // })
 
-  var activeCategories = []
-
   const menu = document.getElementById("dropdown-menu")
   function dropDownMenu(category) {
     if(category === "electronics") {
-      console.log("electronics")
-      activeCategories = APIcategories[0].subCategories
-      console.log(activeCategories)
+      document.getElementById("subElectronics").style.visibility = "visible"
+      document.getElementById("subSport").style.visibility = "collapse"
+      document.getElementById("subHouse").style.visibility = "collapse"
+      document.getElementById("subGarden").style.visibility = "collapse"
     }
     if(category === "sport") {
-      console.log("sport")
-      activeCategories = APIcategories[1].subCategories
-      console.log(activeCategories)
+      document.getElementById("subElectronics").style.visibility = "collapse"
+      document.getElementById("subSport").style.visibility = "visible"
+      document.getElementById("subHouse").style.visibility = "collapse"
+      document.getElementById("subGarden").style.visibility = "collapse"
     }
     if(category === "house") {
-      console.log("house")
-      activeCategories = APIcategories[2].subCategories
-      console.log(activeCategories)
+      document.getElementById("subElectronics").style.visibility = "collapse"
+      document.getElementById("subSport").style.visibility = "collapse"
+      document.getElementById("subHouse").style.visibility = "visible"
+      document.getElementById("subGarden").style.visibility = "collapse"
     }
     if(category === "garden") {
-      console.log("garden")
-      activeCategories = APIcategories[3].subCategories
-      console.log(activeCategories)
+      document.getElementById("subElectronics").style.visibility = "collapse"
+      document.getElementById("subSport").style.visibility = "collapse"
+      document.getElementById("subHouse").style.visibility = "collapse"
+      document.getElementById("subGarden").style.visibility = "visible"
     }
     showDropDownMenu()
   }
@@ -81,10 +83,18 @@ function App() {
       <div id="dropdown-menu">
         <div className="dropdown-menu-background" onClick={() => hideDropDownMenu()}></div>
         <div className="dropdown-menu-active">
-          <h1>testing element</h1>
-          {activeCategories.map((item) => (
-                        <p>{item._id}</p>
-          ))}
+          <div id="subElectronics">
+            <h1>electronis</h1>
+          </div>
+          <div id="subSport">
+            <h1>sport</h1>
+          </div>
+          <div id="subHouse">
+            <h1>house</h1>
+          </div>
+          <div id="subGarden">
+            <h1>garden</h1>
+          </div>
         </div>  
       </div>
     </header>

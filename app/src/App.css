@@ -56,6 +56,10 @@ header ul::-webkit-scrollbar-thumb:horizontal{
     transform: translateX(-50%);
     background-color: yellow;
 }
+.dropdown-menu-active div {
+    width: 100%;
+    background-color: green;
+}
 .dropdown-menu-visible {
     height: 50%;
 }
@@ -129,6 +133,10 @@ section {
 }
 .product-button button {
     cursor: pointer;
+}
+
+.hidden {
+    visibility: collapse;
 }
 
 @media screen and (max-width: 700px) {
