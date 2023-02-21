@@ -81,8 +81,8 @@
       <option value="house">House</option>
       <option value="garden">Garden</option>
     </select>
-    <label for="subcategories">Product sub-category</label>
-    <select id="subcategories" name="subcategories">
+    <label for="categories">Product sub-category</label>
+    <select id="categories" name="categories">
       <option value="gpu">GPU</option>
       <option value="cpu">CPU</option>
       <option value="herni konzole">Herní konzole</option>
@@ -100,7 +100,7 @@
         productShortDescription: description.value,
         productLongDescription: longdescription.value,
         productCategory: category.value,
-        productSubCategory: subcategories.value,
+        productSubCategory: categories.value
       };
 
       fetch(apiUrl, {

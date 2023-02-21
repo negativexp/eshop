@@ -35,6 +35,8 @@ async function MongoInsertObject() {
         
         const count = await collection.countDocuments()
 
+
+
         const product = {
             productTitle: "item-title #" + count,
             productShortDescription: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam erat volutpat.",
@@ -50,6 +52,47 @@ async function MongoInsertObject() {
         } finally {
             await client.close()
     }
+}
+
+async function test() {
+  try {
+    await client.connect()
+    console.log('Connected to MongoDB Atlas')
+
+    const collection = client.db("eshop").collection("products")
+    const categories = client.db("eshop").collection("categories")
+    const test = await categories.find({},{"subCategories": 1}).toArray()
+    console.log(test)
+    // categories.find().forEach(function(doc) {
+    //     console.log(doc.subCategories);
+    //   }, function(err) {
+    //     if (err) {
+    //       console.log(err);
+    //     }
+    //   });
+
+
+    
+    const count = await collection.countDocuments()
+
+    const product = {
+        productTitle: "item-title #" + count,
+        productShortDescription: "Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aliquam erat volutpat.",
+        productCategory: "bruh",
+        productSubcategory: "bruh",
+        productID: count
+    };
+
+    // console.log(product)
+
+    // const result = await collection.insertOne(product)
+    console.log("1 product inserted")
+    
+    } catch (err) {
+        console.error(err)
+    } finally {
+        await client.close()
+}
 }
 
 async function MongoInsertCategory() {
@@ -98,6 +141,7 @@ async function deleteObjectsByCondition() {
     }
 }
 
+test().catch(console.dir)
 //MongoInsertCategory().catch(console.dir)
 //MongoDeleteAll().catch(console.dir);
-MongoInsertObject().catch(console.dir);
+//MongoInsertObject().catch(console.dir);
