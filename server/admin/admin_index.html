@@ -47,21 +47,34 @@
   <form>
     <label for="name">Product Title</label>
     <input type="text" id="title" name="title" placeholder="Enter product title...">
+
+    <label for="description">Product Short Description</label>
+    <textarea id="description" name="description" placeholder="Enter product description..."></textarea>
     
-    <label for="description">Product Description</label>
+    <label for="description">Product Long Description</label>
     <textarea id="description" name="description" placeholder="Enter product description..."></textarea>
     
     <label for="price">Product Price</label>
     <input type="text" id="price" name="price" placeholder="Enter product price...">
     
-    <label for="price">Product ID</label>
-    <input type="text" id="product_id" name="product_id" placeholder="Enter product ID..">
+    <!-- NOTE: Product ID will not be needed since it will based on how many
+               products there will be. -->
+    <!-- <label for="price">Product ID</label>
+    <input type="text" id="product_id" name="product_id" placeholder="Enter product ID.."> -->
 
+    <!-- added: category and categories -->
     <label for="category">Product Category</label>
     <select id="category" name="category">
       <option value="electronics">Electronics</option>
-      <option value="fashion">Fashion</option>
-      <option value="home">Home</option>
+      <option value="sport">Sport</option>
+      <option value="house">House</option>
+      <option value="garden">Garden</option>
+    </select>
+    <label for="categories">Product sub-category</label>
+    <select id="categories" name="categories">
+      <option value="gpu">GPU</option>
+      <option value="cpu">CPU</option>
+      <option value="herni konzole">Herní konzole</option>
     </select>
     
     <input type="submit" value="Add Product" onclick="senddata()">
@@ -86,6 +99,45 @@
         body: JSON.stringify(product_data),
         });
     }
+
+    //added: Chaning sub categories based on main category
+    const categories = document.getElementById("categories")
+    const category = document.getElementById("category")
+    category.addEventListener("change", (e) => {
+      if(category.value == "electronics") {
+        const values = ["GPU", "CPU", "Herní konzole"]
+        changeCategoriesValues(values)
+      }
+      if(category.value == "sport") {
+        const values = ["Zimní", "Fitness", "Výživa"]
+        changeCategoriesValues(values)
+      }
+      if(category.value == "house") {
+        const values = ["Mopy", "Pánve"]
+        changeCategoriesValues(values)
+      }
+      if(category.value == "garden") {
+        const values = ["Sekačky", "Skleníky", "Brusky"]
+        changeCategoriesValues(values)
+      }
+    })
+
+    function deleteAllValues() {
+      while (categories.options.length > 0) {
+        categories.remove(0);
+      }
+    }
+
+    function changeCategoriesValues(values) {
+      deleteAllValues()
+      values.forEach(element => {
+        const option = document.createElement("option");
+        option.value = element.toLowerCase()
+        option.textContent = element
+        categories.appendChild(option)
+      });
+    }
+
   </script>
 
 
