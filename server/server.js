@@ -3,11 +3,10 @@ const express = require("express");
 const { connect } = require('http2');
 const path = require('path');
 const app = express()
-const currentPath = path.join(__dirname, '');
 
-app.use(express.static("images/products"))
+app.use("/static", express.static(path.join(__dirname, "..", "app", "build", "static")));
 
-//mongodb connect
+// mongodb connect
 const uri = "mongodb+srv://user1:user1@cluster0.uqzmjre.mongodb.net/?retryWrites=true&w=majority"
 const client = new MongoClient(uri, {
     useNewUrlParser: true,
@@ -20,11 +19,17 @@ async function connectToMongoDB() {
 }
 connectToMongoDB()
 
-// path to admin page
-app.get("/admin", (req, res) => {
-    res.sendFile(currentPath + "/admin/admin_index.html");
+// default path
+app.get("/", (req, res) => {
+    const currentPath = path.join(__dirname, '../app/build/');
+    res.sendFile(currentPath + "/index.html");
 });
 
+// path to admin page
+app.get("/admin", (req, res) => {
+    const currentPath = path.join(__dirname, '/admin/');
+    res.sendFile(currentPath + "admin_index.html");
+});
 
 // api endpoint that returns all products from database
 app.get("/api/products/", async (req, res) => {
@@ -45,7 +50,7 @@ app.get("/api/addproduct/", async (req, res) => {
     
 })
 
-//listen
+// listen
 app.listen(5000, () => {
     console.log("server started on port 5000")
 })
