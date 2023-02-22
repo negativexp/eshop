@@ -96,11 +96,11 @@
       const apiUrl = new URL("http://localhost:5000/api/addproduct/");
 
       const product_data = {
-        productTitle: title.value,
+        productTitle: title.value.toLowerCase(),
         productShortDescription: description.value,
         productLongDescription: longdescription.value,
-        productCategory: category.value,
-        productSubCategory: categories.value
+        productCategory: category.value.toLowerCase(),
+        productSubCategory: categories.value.toLowerCase()
       };
 
       fetch(apiUrl, {
@@ -119,19 +119,19 @@
     const category = document.getElementById("category")
     category.addEventListener("change", (e) => {
       if(category.value == "electronics") {
-        const values = ["GPU", "CPU", "Herní konzole"]
+        const values = ["GPU", "CPU", "Gaming console"]
         changeCategoriesValues(values)
       }
       if(category.value == "sport") {
-        const values = ["Zimní", "Fitness", "Výživa"]
+        const values = ["Winter", "Fitness", "Nutrition"]
         changeCategoriesValues(values)
       }
       if(category.value == "house") {
-        const values = ["Mopy", "Pánve"]
+        const values = ["Mops", "Pans"]
         changeCategoriesValues(values)
       }
       if(category.value == "garden") {
-        const values = ["Sekačky", "Skleníky", "Brusky"]
+        const values = ["Mowers", "Greenhouses", "Grinders"]
         changeCategoriesValues(values)
       }
     })

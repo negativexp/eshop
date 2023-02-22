@@ -23,8 +23,12 @@ body {
     display: flex;
     gap: 10px;
 }
-.header-subCategories {
-
+.header-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding-left: 5%;
+    padding-right: 5%;
 }
 .sub-category {
     position: absolute;
@@ -54,7 +58,11 @@ header ul::-webkit-scrollbar-thumb:horizontal{
     background: #000;
     border-radius: 10px;
 }
-
+header button {
+    padding-left: 10px;
+    padding-right: 10px;
+    font-size: 16px;
+}
 main {
     flex-grow: 1;
     overflow-y: scroll;

@@ -1,4 +1,4 @@
-const { MongoClient } = require('mongodb');
+const { MongoClient, FindCursor } = require('mongodb');
 const uri = "mongodb+srv://user1:user1@cluster0.uqzmjre.mongodb.net/?retryWrites=true&w=majority";
 const client = new MongoClient(uri)
 
@@ -140,8 +140,27 @@ async function deleteObjectsByCondition() {
       await client.close();
     }
 }
+async function MongoInsertCategory() {
+  try {
+    await client.connect()
+    console.log('Connected to MongoDB Atlas')
+
+    const collection = client.db("eshop").collection("categories")
+    const count = await collection.countDocuments()
+
+
+    const result = await collection.insertOne(category)
+    console.log("1 product inserted")
+    
+    } catch (err) {
+        console.error(err)
+    } finally {
+        await client.close()
+}
+}
 
 //test().catch(console.dir)
 //MongoInsertCategory().catch(console.dir)
-MongoDeleteAll().catch(console.dir);
+//MongoDeleteAll().catch(console.dir);
 //MongoInsertObject().catch(console.dir);
+//MongoInsertCategory().catch(console.dir)

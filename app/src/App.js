@@ -7,6 +7,7 @@ function App() {
   const [APIprdocuts, setAPIprdocuts] = useState([])
   const [APIcategories, setAPIcategories] = useState([])
   const [visibleProducts, setVisibleProducts] = useState([])
+  const [loaded, setLoaded] = useState(false);
 
   useEffect(() => {
     async function fetchData() {
@@ -45,12 +46,12 @@ function App() {
       const obj = APIprdocuts[i];
       for (let prop in obj) {
         if (Array.isArray(obj[prop])) {
-          if (obj[prop].includes(searchValue)) {
+          if (obj[prop].toLowerCase().includes(searchValue)) {
             matchingObjects.push(obj);
             break;
           }
         } else {
-          if (obj[prop] === searchValue) {
+          if (obj[prop].toLowerCase().includes(searchValue)) {
             matchingObjects.push(obj);
             break;
           }
@@ -58,7 +59,6 @@ function App() {
       }
     }
     const newArray = matchingObjects.map(item => Object.fromEntries(Object.entries(item)));
-    console.log(newArray)
     // const newArray = [Object.fromEntries(Object.entries(APIprdocuts))];
     // console.log(newArray)
     setVisibleProducts(newArray)
@@ -83,13 +83,13 @@ function App() {
         </div>
         <div className="header-categories">
         {APIcategories.map((item) => (
-          <button onClick={() => displayCategories(item.category)}>{item.category}</button>
+          <button onClick={() => displayCategories(item.category)}>{item.category.toString().charAt(0).toUpperCase() + item.category.slice(1)}</button>
         ))}
         </div>
           <div className="header-subCategories">
             {APIcategories.map((item) => (
              <div className="sub-category" id={item.category}>
-                <p>Všechno</p>
+                <button onClick={() => searchBySubCategory(item.category)}>Všechno</button>
                 {item.subCategories.map((item) => (
                   <button onClick={() => searchBySubCategory(item)}>{item}</button>
                 ))}
