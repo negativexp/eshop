@@ -85,7 +85,7 @@
     <select id="categories" name="categories">
       <option value="gpu">GPU</option>
       <option value="cpu">CPU</option>
-      <option value="herni konzole">Herní konzole</option>
+      <option value="herní konzole">Herní konzole</option>
     </select>
     
     <button type="submit" onclick="senddata()">Add product</button>
@@ -96,11 +96,11 @@
       const apiUrl = new URL("http://localhost:5000/api/addproduct/");
 
       const product_data = {
-        productTitle: title.value.toLowerCase(),
+        productTitle: title.value,
         productShortDescription: description.value,
         productLongDescription: longdescription.value,
-        productCategory: category.value.toLowerCase(),
-        productSubCategory: categories.value.toLowerCase()
+        productCategory: category.value,
+        productSubCategory: categories.value
       };
 
       fetch(apiUrl, {
@@ -119,19 +119,19 @@
     const category = document.getElementById("category")
     category.addEventListener("change", (e) => {
       if(category.value == "electronics") {
-        const values = ["GPU", "CPU", "Gaming console"]
+        const values = ["GPU", "CPU", "Herní konzole"]
         changeCategoriesValues(values)
       }
       if(category.value == "sport") {
-        const values = ["Winter", "Fitness", "Nutrition"]
+        const values = ["Zimní", "Fitness", "Výživa"]
         changeCategoriesValues(values)
       }
       if(category.value == "house") {
-        const values = ["Mops", "Pans"]
+        const values = ["Mopy", "Pánve"]
         changeCategoriesValues(values)
       }
       if(category.value == "garden") {
-        const values = ["Mowers", "Greenhouses", "Grinders"]
+        const values = ["Sekačky", "Skleníky", "Brusky"]
         changeCategoriesValues(values)
       }
     })
