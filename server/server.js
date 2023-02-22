@@ -7,7 +7,7 @@ const app = express()
 
 app.use(bodyParser.json());
 app.use("/static", express.static(path.join(__dirname, "..", "app", "build", "static")));
-
+app.use("/images", express.static("images"))
 // mongodb connect
 const uri = "mongodb+srv://user1:user1@cluster0.uqzmjre.mongodb.net/?retryWrites=true&w=majority"
 const client = new MongoClient(uri, {

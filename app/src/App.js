@@ -42,11 +42,20 @@ function App() {
     var searchValue = document.getElementById("searchbar").value
     searchValue = searchValue.toLowerCase()
     const matchingObjects = [];
+
+    //everything has to be lowercase to check if the search value matches
+    //the value we are trying to look for
+
+    //iritate through every object in apiproducts
     for (let i = 0; i < APIprdocuts.length; i++) {
+      //get object
       const obj = APIprdocuts[i];
       for (let prop in obj) {
+        //chceck if field is an array in object
         if (Array.isArray(obj[prop])) {
+          //check if it includes the value
           if (obj[prop].toLowerCase().includes(searchValue)) {
+            //if so, push the object into matching objects
             matchingObjects.push(obj);
             break;
           }
@@ -58,10 +67,7 @@ function App() {
         }
       }
     }
-    const newArray = matchingObjects.map(item => Object.fromEntries(Object.entries(item)));
-    // const newArray = [Object.fromEntries(Object.entries(APIprdocuts))];
-    // console.log(newArray)
-    setVisibleProducts(newArray)
+    setVisibleProducts(matchingObjects)
   }
 
   function searchBySubCategory(item) {
@@ -69,11 +75,16 @@ function App() {
     document.getElementById("searchbutton").click()
   } 
 
+  function FirstCapitalLetter(item) {
+    return item.toString().charAt(0).toUpperCase() + item.slice(1)
+  }
+
   return (
     <div className="App">
       <header>
         <div className="header-top">
           <div className="logo-name">
+            <p>obratek</p>
             <h1>nezukoketamin</h1>
           </div>
           <div className="header-search">
@@ -83,15 +94,17 @@ function App() {
         </div>
         <div className="header-categories">
         {APIcategories.map((item) => (
-          <button onClick={() => displayCategories(item.category)}>{item.category.toString().charAt(0).toUpperCase() + item.category.slice(1)}</button>
+          <button onClick={() => displayCategories(item.category)}>{FirstCapitalLetter(item.category)}</button>
         ))}
         </div>
           <div className="header-subCategories">
             {APIcategories.map((item) => (
              <div className="sub-category" id={item.category}>
-                <button onClick={() => searchBySubCategory(item.category)}>Všechno</button>
+                {/* <button onClick={() => searchBySubCategory(FirstCapitalLetter(item.category))}>Všechno</button> */}
                 {item.subCategories.map((item) => (
-                  <button onClick={() => searchBySubCategory(item)}>{item}</button>
+                  <div className="each-subCategory">
+                    <button onClick={() => searchBySubCategory(item)}>{item}</button>
+                  </div>
                 ))}
               </div>
            ))}
