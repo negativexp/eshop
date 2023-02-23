@@ -1,46 +1,50 @@
-import React, {useState, useEffect} from "react";
+import React, { useState, useEffect } from "react";
 import "./App.css";
-import {Product, SubCategories} from "./components.js"
+import "./header.css";
+import { Product, SubCategories } from "./components.js";
 
 function App() {
-
   const [APIprdocuts, setAPIprdocuts] = useState([])
   const [APIcategories, setAPIcategories] = useState([])
   const [visibleProducts, setVisibleProducts] = useState([])
-  const [loaded, setLoaded] = useState(false);
+  const [cart, setCart] = useState([])
+  const [cartPrice, setCartPrice] = useState(0)
+  const [lastAddedItem, setLastAddedItem] = useState()
 
   useEffect(() => {
     async function fetchData() {
       //products
-      setAPIprdocuts(await (await fetch("/api/products")).json())
+      setAPIprdocuts(await (await fetch("/api/products")).json());
 
       //catogeries
-      setAPIcategories(await (await fetch("/api/categories")).json())
+      setAPIcategories(await (await fetch("/api/categories")).json());
     }
-    fetchData()
+    fetchData();
   }, [])
 
   function displayCategories(category) {
-    document.getElementById("header-subCategories-empty").style.visibility = "visible"
+    document.getElementById("header-subCategories-empty").style.visibility =
+      "visible";
     APIcategories.forEach((item) => {
-      if(item.category == category) {
-        document.getElementById(item.category).style.visibility = "visible"
+      if (item.category == category) {
+        document.getElementById(item.category).style.visibility = "visible";
       } else {
-        document.getElementById(item.category).style.visibility = "collapse"
+        document.getElementById(item.category).style.visibility = "collapse";
       }
-    })
+    });
   }
 
   function hideSubCategories() {
     APIcategories.forEach((item) => {
-      document.getElementById(item.category).style.visibility = "collapse"
-    })
-    document.getElementById("header-subCategories-empty").style.visibility = "collapse"
+      document.getElementById(item.category).style.visibility = "collapse";
+    });
+    document.getElementById("header-subCategories-empty").style.visibility =
+      "collapse";
   }
 
   function search() {
-    var searchValue = document.getElementById("searchbar").value
-    searchValue = searchValue.toLowerCase()
+    var searchValue = document.getElementById("searchbar").value;
+    searchValue = searchValue.toLowerCase();
     const matchingObjects = [];
 
     //everything has to be lowercase to check if the search value matches
@@ -67,58 +71,95 @@ function App() {
         }
       }
     }
-    setVisibleProducts(matchingObjects)
+    setVisibleProducts(matchingObjects);
   }
 
   function searchBySubCategory(item) {
-    document.getElementById("searchbar").value = item
-    document.getElementById("searchbutton").click()
-  } 
+    document.getElementById("searchbar").value = item;
+    document.getElementById("searchbutton").click();
+  }
 
   function FirstCapitalLetter(item) {
-    return item.toString().charAt(0).toUpperCase() + item.slice(1)
+    return item.toString().charAt(0).toUpperCase() + item.slice(1);
+  }
+
+  function addToCart(item) {
+    if(!cart.includes(item)) {
+      setCart([...cart, item])
+      setCartPrice(cartPrice + parseInt(item.price))
+      setLastAddedItem(item.title)
+    }
   }
 
   return (
     <div className="App">
       <header>
         <div className="header-top">
-          <div className="logo-name">
-            <p>obratek</p>
+          <div className="header-left">
             <h1>nezukoketamin</h1>
+            <div className="header-search">
+              <input id="searchbar" type="text" />
+              <button id="searchbutton" onClick={() => search()}>
+                search
+              </button>
+            </div>
           </div>
-          <div className="header-search">
-            <input id="searchbar" type="text"/>
-            <button id="searchbutton" onClick={() => search()}>search</button>
+          <div className="header-right">
+            <p>{cartPrice} kč</p>
           </div>
         </div>
         <div className="header-categories">
-        {APIcategories.map((item) => (
-          <button onClick={() => displayCategories(item.category)}>{FirstCapitalLetter(item.category)}</button>
-        ))}
+          {APIcategories.map((item) => (
+            <button onClick={() => displayCategories(item.category)}>
+              {FirstCapitalLetter(item.category)}
+            </button>
+          ))}
         </div>
-          <div className="header-subCategories">
-            {APIcategories.map((item) => (
-             <div className="sub-category" id={item.category}>
-                {/* <button onClick={() => searchBySubCategory(FirstCapitalLetter(item.category))}>Všechno</button> */}
-                {item.subCategories.map((item) => (
-                  <div className="each-subCategory">
-                    <button onClick={() => searchBySubCategory(item)}>{item}</button>
-                  </div>
-                ))}
-              </div>
-           ))}
-          <div id="header-subCategories-empty" onClick={() => hideSubCategories()}></div>
+        <div className="header-subCategories">
+          {APIcategories.map((item) => (
+            <div className="sub-category" id={item.category}>
+              {/* <button onClick={() => searchBySubCategory(FirstCapitalLetter(item.category))}>Všechno</button> */}
+              {item.subCategories.map((item) => (
+                <div className="each-subCategory">
+                  <button onClick={() => searchBySubCategory(item)}>
+                    {item}
+                  </button>
+                </div>
+              ))}
+            </div>
+          ))}
+          <div
+            id="header-subCategories-empty"
+            onClick={() => hideSubCategories()}
+          ></div>
         </div>
       </header>
-        <main>
-        {visibleProducts.map(product => (
-          <Product>
-            <h1>{product.productTitle}</h1>
-            <p>{product.productShortDescription}</p>
-          </Product>
+      <main>
+        {visibleProducts.map((product) => (
+          <div className="product">
+            <div className="product-img">
+              <img/>
+            </div>
+            <div className="product-title">
+              <h1>{product.title}</h1>
+            </div>
+            <div className="product-shortdescription">
+              <p>{product.shortDescription}</p>
+            </div>
+            <div className="product-button">
+              <button onClick={() => addToCart(product)}>Add to cart</button>
+            </div>
+          </div>
         ))}
-        </main>
+      </main>
+      <div className="cart">
+        {cart.map((item) => (
+          <p>item</p>
+        ))}
+      </div>
+      <div className="last-added-item">
+        <p>Item {lastAddedItem} has been added.</p>
+      </div>
     </div>
   );
 }

@@ -96,11 +96,12 @@
       const apiUrl = new URL("http://localhost:5000/api/addproduct/");
 
       const product_data = {
-        productTitle: title.value,
-        productShortDescription: description.value,
-        productLongDescription: longdescription.value,
-        productCategory: category.value,
-        productSubCategory: categories.value
+        title: title.value,
+        shortDescription: description.value,
+        longDescription: longdescription.value,
+        category: category.value,
+        subCategory: categories.value,
+        price: price.value
       };
 
       fetch(apiUrl, {
