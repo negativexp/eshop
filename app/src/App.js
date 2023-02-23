@@ -105,7 +105,7 @@ function App() {
             </div>
           </div>
           <div className="header-right">
-            <p>{cartPrice} kč</p>
+            <p>{cartPrice} Kč</p>
           </div>
         </div>
         <div className="header-categories">
