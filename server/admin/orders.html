@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Panel - Orders</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+      }
+      h1 {
+        text-align: center;
+        margin-top: 50px;
+      }
+    </style>
+  </head>
+  <body>
+    <h1>Admin Panel - Orders</h1>
+    <table id="ordersTable" border="1">
+      <thead>
+        <tr>
+          <td>Order ID</td>
+          <td>First Name</td>
+          <td>Last Name</td>
+          <td>E-Mail</td>
+          <td>Phone Number</td>
+          <td>City</td>
+          <td>Address</td>
+          <td>Postal Code</td>
+          <td>Status</td>
+        </tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+
+    <script>
+      var orders = null;
+      fetch("http://localhost:5000/api/orders")
+        .then((res) => res.json())
+        .then((data) => {
+          orders = data;
+          const table = document.getElementById("ordersTable");
+          const tbody = table.getElementsByTagName("tbody")[0];
+
+          orders.forEach((order) => {
+            const row = document.createElement("tr");
+            for (const key in order) {
+              if (Object.hasOwnProperty.call(order, key)) {
+                const cell = document.createElement("td");
+                cell.textContent = order[key];
+                row.appendChild(cell);
+              }
+            }
+            tbody.appendChild(row);
+          });
+        });
+    </script>
+  </body>
+</html>

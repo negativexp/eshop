@@ -39,6 +39,12 @@ app.get("/productform", (req, res) => {
     res.sendFile(currentPath + "product_form.html");
 });
 
+// path to orders page
+app.get("/ordersform", (req, res) => {
+    const currentPath = path.join(__dirname, '/admin/');
+    res.sendFile(currentPath + "orders.html");
+});
+
 
 // api endpoint that returns all products from database
 app.get("/api/products/", async (req, res) => {
@@ -54,12 +60,19 @@ app.get("/api/categories/", async (req, res) => {
     res.json(categories)
 });
 
+// api gets all orders
+app.get("/api/orders", async (req, res) => {
+    const collection = client.db("eshop").collection("orders");
+    const orders = await collection.find().toArray()
+    res.json(orders)
+})
+
 // api endpoint to add products into database
 app.post("/api/addproduct/", async (req, res) => {
     const collection = client.db("eshop").collection("products");
     const productCount = await (await collection.countDocuments()).toString().padStart(6, "0")
     req.body.productdata.productID = productCount
-    console.log(req.body.productdata)
+    // console.log(req.body.productdata)
     await collection.insertOne(req.body.productdata);
 
     res.status(200).send("");
