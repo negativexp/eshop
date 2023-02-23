@@ -13,6 +13,7 @@
       margin-top: 50px;
     }
     form {
+      position: relative;
       max-width: 500px;
       margin: 50px auto;
       padding: 20px;
@@ -56,6 +57,24 @@
     button:hover {
       background-color: darkgreen;
     }
+
+    .back-button {
+      background-color: green;
+      border: none;
+      color: white;
+      padding: 10px 20px;
+      font-size: 16px;
+      cursor: pointer;
+      border-radius: 5px;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      margin: 20px;
+      }
+
+    .back-button:hover {
+      background-color: #ddd;
+      }
   </style>
 </head>
 <body>
@@ -89,16 +108,24 @@
     </select>
     
     <button type="submit" onclick="senddata()">Add product</button>
+    <button class="back-button" onclick="window.history.back();">GO BACK</button>
+
   </form>
 
   <script>
     function senddata() {
       const apiUrl = new URL("http://localhost:5000/api/addproduct/");
 
+      if(title.value == '' || description.value == '' || longdescription.value == '' || price.value == ''){
+        alert("Enter a data!");
+        return;
+      }
+
       const product_data = {
         productTitle: title.value,
         productShortDescription: description.value,
         productLongDescription: longdescription.value,
+        price: price.value,
         productCategory: category.value,
         productSubCategory: categories.value
       };
