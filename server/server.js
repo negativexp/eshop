@@ -21,6 +21,7 @@ async function connectToMongoDB() {
 }
 connectToMongoDB()
 
+// ======================== PAGE ROUTES ========================
 // default path
 app.get("/", (req, res) => {
     const currentPath = path.join(__dirname, '../app/build/');
@@ -46,6 +47,7 @@ app.get("/ordersform", (req, res) => {
 });
 
 
+// ======================== API ROUTES ========================
 // api endpoint that returns all products from database
 app.get("/api/products/", async (req, res) => {
     const collection = client.db("eshop").collection("products");
@@ -61,7 +63,7 @@ app.get("/api/categories/", async (req, res) => {
 });
 
 // api gets all orders
-app.get("/api/orders", async (req, res) => {
+app.get("/api/orders/", async (req, res) => {
     const collection = client.db("eshop").collection("orders");
     const orders = await collection.find().toArray()
     res.json(orders)
@@ -75,6 +77,13 @@ app.post("/api/addproduct/", async (req, res) => {
     req.body.productdata.productID = productCount
     await collection.insertOne(req.body.productdata);
 
+    res.status(200).send("");
+});
+
+app.post("/api/addorder/", async (req, res) => {
+    const collection = client.db("eshop").collection("orders");
+
+    
     res.status(200).send("");
 });
 
