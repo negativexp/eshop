@@ -169,11 +169,13 @@ function App() {
       </div>
       <div id="checkout">
         <h1>items</h1>
-         <div id="checkout-exit" onClick={() => hideCheckOut()}>x</div>
+         <button id="checkout-exit" onClick={() => hideCheckOut()}>x</button>
         <div className="cart-items">
           {cart.map((item => (
             <div className="cart-item">
-              {item.price}
+              <h1>{item.title}</h1>
+              <h3>{item.shortDescription}</h3>
+              <p>{item.price} kč</p>
             </div>
           )))}
         </div>
