@@ -75,11 +75,76 @@
     .back-button:hover {
       background-color: #ddd;
       }
+
+      * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    
+    .wrapper {
+      display: flex;
+    }
+    
+    .sidebar {
+      width: 250px;
+      height: 100%;
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+    }
+    
+    .sidebar h2 {
+      margin-top: 0;
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    li a {
+      display: block;
+      padding: 10px;
+      color: #fff;
+      text-decoration: none;
+    }
+    
+    li a:hover {
+      background-color: #555;
+    }
+    
+    .main-content {
+        flex: 1;
+        padding: 20px;
+    }
+
+    a:hover, a:visited, a:link, a:active
+    {
+        text-decoration: none;
+        color: #fff;
+    }
   </style>
 </head>
 <body>
-  <h1>Admin Panel - Add Product</h1>
-  <form onsubmit="return false">
+  
+  <div class="wrapper">
+    <div class="sidebar">
+      <h2><a href="/admin">Dashboard</a></h2>
+      <ul>
+        <li><a href="/productform">Add product</a></li>
+        <li><a href="/ordersform">Orders</a></li>
+        <li><a href="#">Settings</a></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </div>
+
+    <form onsubmit="return false">
     <label for="name">Product Title</label>
     <input type="text" id="title" name="title" placeholder="Enter product title...">
 
@@ -111,6 +176,8 @@
     <button class="back-button" onclick="window.history.back();">GO BACK</button>
 
   </form>
+
+  </div>
 
   <script>
     function senddata() {

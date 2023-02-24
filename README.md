@@ -3,6 +3,7 @@
 2. Run server `npm run dev`
 
 ## DB Schema
+### Product
 ```yaml 
 productTitle: string
 productShortDescription: string
@@ -11,3 +12,14 @@ productCategory: string
 productSubCategory: string
 productID: number
 ```
+
+### Orders
+```yaml
+firstName: string
+lastName: string
+email: string
+phoneNumber: number
+city: string
+Address: string
+postalCode: number
+status: string {processing/shipped/closed}
