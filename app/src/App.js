@@ -91,6 +91,13 @@ function App() {
     }
   }
 
+  function hideCheckOut() {
+    document.getElementById("checkout").style.visibility = "collapse"
+  }
+  function showCheckOut() {
+    document.getElementById("checkout").style.visibility = "visible"
+  }
+
   return (
     <div className="App">
       <header>
@@ -105,7 +112,7 @@ function App() {
             </div>
           </div>
           <div className="header-right">
-            <p>{cartPrice} Kč</p>
+            <button onClick={() => showCheckOut()}>{cartPrice} Kč</button>
           </div>
         </div>
         <div className="header-categories">
@@ -157,8 +164,19 @@ function App() {
           <p>item</p>
         ))}
       </div>
-      <div className="last-added-item">
+      <div className="notification">
         <p>Item {lastAddedItem} has been added.</p>
+      </div>
+      <div id="checkout">
+        <h1>items</h1>
+         <div id="checkout-exit" onClick={() => hideCheckOut()}>x</div>
+        <div className="cart-items">
+          {cart.map((item => (
+            <div className="cart-item">
+              {item.price}
+            </div>
+          )))}
+        </div>
       </div>
     </div>
   );
