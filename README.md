@@ -23,3 +23,4 @@ city: string
 address: string
 postalCode: number
 status: string {processing/shipped/closed}
+orderedProducts: string

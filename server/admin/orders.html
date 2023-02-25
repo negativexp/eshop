@@ -81,6 +81,7 @@
         width: 100%;
         max-width: 1000px;
         border: 2px solid #5cb85c;
+        text-align: center;
       }
 
       /* Add border to table cells */
@@ -89,6 +90,7 @@
         padding: 12px 15px;
         text-align: left;
         border: 1px solid #ddd;
+
       }
 
       /* Remove right border from last column */
@@ -146,9 +148,10 @@
             <th class="table-cell">E-Mail</th>
             <th class="table-cell">Phone Number</th>
             <th class="table-cell">City</th>
-            <th class="table-cell">Address</th>
             <th class="table-cell">Postal Code</th>
             <th class="table-cell">Status</th>
+            <th class="table-cell">Address</th>
+            <th class="table-cell">Products ordered</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -156,9 +159,9 @@
       
     </div>
 
-    <script>
-      var orders = null;
-fetch("http://localhost:5000/api/orders")
+<script>
+  var orders = null;
+  fetch("/api/orders")
   .then((res) => res.json())
   .then((data) => {
     orders = data;
