@@ -64,7 +64,7 @@
       box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
       width: 340px;
     }
-
+    .status,
     .textbox {
       display: block;
       margin: 10px 0;
@@ -125,7 +125,12 @@
         Postal Code
 		<input type="text" class="textbox" value="<%= order.postalCode %>" id="postalCode">
         Status
-		<input type="text" class="textbox" value="<%= order.status %>" id="status">
+    <select name="status" class="status" id="status">
+      <option value="processing" <%= order.status === "processing" ? "selected" : "" %>>processing</option>
+      <option value="shipped" <%= order.status === "shipped" ? "selected" : "" %>>shipped</option>
+      <option value="closed" <%= order.status === "closed" ? "selected" : "" %>>closed</option>
+    </select>
+
 		<button class="button" onclick="senddata()">Save</button>
 	</div>
   </div>
@@ -135,6 +140,7 @@
   function senddata() {
     const apiUrl = new URL("http://localhost:5000/api/editorder/");
 
+    const statusDropdown = document.getElementById("status");
     const order_data = {
       _id: orderID.value,
       firstName: firstName.value,
@@ -144,7 +150,7 @@
       city: city.value,
       address: address.value,
       postalCode: postalCode.value,
-      status: status.value
+      status: statusDropdown.value
     };
 
     fetch(apiUrl, {
@@ -157,5 +163,9 @@
         window.location.reload();  
       }
   };
+
+  statusDropdown.addEventListener("change", () => {
+  order_data.status = statusDropdown.value;
+});
 </script>
 </html>
