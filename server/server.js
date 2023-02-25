@@ -74,8 +74,6 @@ app.get("/api/orders/", async (req, res) => {
 
 // api endpoint to find order with specific id in DB
 app.get("/api/order/:id", async (req, res) => {
-    //const currentPath = path.join(__dirname, '/admin/');
-    //res.sendFile(currentPath + "orderlookup.html");
     const id = new ObjectId(req.params.id);
     const collection = client.db("eshop").collection("orders");
     collection.findOne({_id: id}).then((order) => {
