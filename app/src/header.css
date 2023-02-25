@@ -12,8 +12,8 @@
     justify-content: center;
     gap: 10px;
 }
-.header-right {
-
+.header-right button:hover {
+    cursor: pointer;
 }
 .header-search {
     display: flex;
@@ -27,6 +27,9 @@
     border-top-right-radius: 5px;
     padding: 3px 15px;
     background-color: gray;
+}
+.header-search button:hover {
+    cursor: pointer;
 }
 .header-search input {
     width: 250px;
