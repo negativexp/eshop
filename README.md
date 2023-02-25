@@ -20,6 +20,6 @@ lastName: string
 email: string
 phoneNumber: number
 city: string
-Address: string
+address: string
 postalCode: number
 status: string {processing/shipped/closed}
