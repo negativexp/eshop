@@ -47,36 +47,38 @@ function App() {
       "collapse";
   }
 
-  function search() {
-    var searchValue = document.getElementById("searchbar").value;
-    searchValue = searchValue.toLowerCase();
-    const matchingObjects = [];
+  const [searchKeyword, setSearchKeyword] = useState("");
+  const search = (keyword) => {
+    setSearchKeyword(keyword)
+    // var searchValue = document.getElementById("searchbar").value;
+    // searchValue = searchValue.toLowerCase();
+    // const matchingObjects = [];
 
-    //everything has to be lowercase to check if the search value matches
-    //the value we are trying to look for
+    // //everything has to be lowercase to check if the search value matches
+    // //the value we are trying to look for
 
-    //iritate through every object in apiproducts
-    for (let i = 0; i < APIprdocuts.length; i++) {
-      //get object
-      const obj = APIprdocuts[i];
-      for (let prop in obj) {
-        //chceck if field is an array in object
-        if (Array.isArray(obj[prop])) {
-          //check if it includes the value
-          if (obj[prop].toLowerCase().includes(searchValue)) {
-            //if so, push the object into matching objects
-            matchingObjects.push(obj);
-            break;
-          }
-        } else {
-          if (obj[prop].toLowerCase().includes(searchValue)) {
-            matchingObjects.push(obj);
-            break;
-          }
-        }
-      }
-    }
-    setVisibleProducts(matchingObjects);
+    // //iritate through every object in apiproducts
+    // for (let i = 0; i < APIprdocuts.length; i++) {
+    //   //get object
+    //   const obj = APIprdocuts[i];
+    //   for (let prop in obj) {
+    //     //chceck if field is an array in object
+    //     if (Array.isArray(obj[prop])) {
+    //       //check if it includes the value
+    //       if (obj[prop].toLowerCase().includes(searchValue)) {
+    //         //if so, push the object into matching objects
+    //         matchingObjects.push(obj);
+    //         break;
+    //       }
+    //     } else {
+    //       if (obj[prop].toLowerCase().includes(searchValue)) {
+    //         matchingObjects.push(obj);
+    //         break;
+    //       }
+    //     }
+    //   }
+    // }
+    // setVisibleProducts(matchingObjects);
   }
 
   function searchBySubCategory(item) {
@@ -144,8 +146,8 @@ function App() {
           element={
             <main>
               <VisibleProducts
-                visibleProducts={visibleProducts}
                 addToCart={addToCart}
+                searchKeyword={searchKeyword}
               />
             </main>
           }

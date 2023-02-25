@@ -5,8 +5,8 @@ export function Header({ categories, cartPrice, search, showCheckOut, displayCat
   const [searchParams, setSearchParams] = useSearchParams();
   const searchTerm = searchParams.get("query") || "";
 
-  const handleSearch = (e) => {
-    const query = e.target.value;
+  const handleSearch = () => {
+    const query = document.getElementById("searchbar").value
 
     if (query) {
         setSearchParams({ query });
@@ -24,7 +24,8 @@ export function Header({ categories, cartPrice, search, showCheckOut, displayCat
           <h1>nezukoketamin</h1>
           <div className="header-search">
             <input id="searchbar" type="text" value={searchTerm} onChange={handleSearch}/>
-            <button id="searchbutton" onClick={() => {search()}} >
+            <button id="searchbutton" onClick={() =>
+              {search()}}>
               search
             </button>
           </div>
