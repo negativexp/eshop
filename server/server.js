@@ -1,4 +1,5 @@
 const { MongoClient } = require('mongodb');
+const { ObjectId } = require('mongodb');
 const express = require("express");
 const { connect } = require('http2');
 const bodyParser = require('body-parser');
@@ -65,9 +66,18 @@ app.get("/api/categories/", async (req, res) => {
 // api gets all orders
 app.get("/api/orders/", async (req, res) => {
     const collection = client.db("eshop").collection("orders");
-    const orders = await collection.find().toArray()
-    res.json(orders)
-})
+    const orders = await collection.find().toArray();
+    res.json(orders);
+});
+
+// api endpoint to find order with specific id in DB
+app.get("/api/order/:id", async (req, res) => {
+    const id = new ObjectId(req.params.id);
+    const collection = client.db("eshop").collection("orders");
+    collection.findOne({_id: id}).then((order) => {
+        res.json(order);
+    });
+});
 
 // api endpoint to add products into database
 app.post("/api/addproduct/", async (req, res) => {
@@ -80,6 +90,7 @@ app.post("/api/addproduct/", async (req, res) => {
     res.status(200).send("");
 });
 
+// api endpoint to add an order into database
 app.post("/api/addorder/", async (req, res) => {
     const collection = client.db("eshop").collection("orders");
 

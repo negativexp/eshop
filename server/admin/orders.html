@@ -158,25 +158,34 @@
 
     <script>
       var orders = null;
-      fetch("http://localhost:5000/api/orders")
-        .then((res) => res.json())
-        .then((data) => {
-          orders = data;
-          const table = document.getElementById("ordersTable");
-          const tbody = table.getElementsByTagName("tbody")[0];
+fetch("http://localhost:5000/api/orders")
+  .then((res) => res.json())
+  .then((data) => {
+    orders = data;
+    const table = document.getElementById("ordersTable");
+    const tbody = table.getElementsByTagName("tbody")[0];
 
-          orders.forEach((order) => {
-            const row = document.createElement("tr");
-            for (const key in order) {
-              if (Object.hasOwnProperty.call(order, key)) {
-                const cell = document.createElement("td");
-                cell.textContent = order[key];
-                row.appendChild(cell);
-              }
-            }
-            tbody.appendChild(row);
-          });
-        });
+    orders.forEach((order) => {
+      const row = document.createElement("tr");
+      for (const key in order) {
+        if (Object.hasOwnProperty.call(order, key)) {
+          const cell = document.createElement("td");
+          if (key === "_id") {
+            const link = document.createElement("a");
+            link.href = "/api/order/" + order[key];
+            link.textContent = order[key];
+            link.style.color = "blue";
+            cell.appendChild(link);
+          } else {
+            cell.textContent = order[key];
+          }
+          row.appendChild(cell);
+        }
+      }
+      tbody.appendChild(row);
+    });
+  });
+
     </script>
   </body>
 </html>
