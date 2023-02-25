@@ -9,6 +9,8 @@ const app = express()
 app.use(bodyParser.json());
 app.use("/static", express.static(path.join(__dirname, "..", "app", "build", "static")));
 app.use("/images", express.static("images"))
+app.set('view engine', 'ejs');
+
 // mongodb connect
 const uri = "mongodb+srv://user1:user1@cluster0.uqzmjre.mongodb.net/?retryWrites=true&w=majority"
 const client = new MongoClient(uri, {
@@ -72,10 +74,12 @@ app.get("/api/orders/", async (req, res) => {
 
 // api endpoint to find order with specific id in DB
 app.get("/api/order/:id", async (req, res) => {
+    //const currentPath = path.join(__dirname, '/admin/');
+    //res.sendFile(currentPath + "orderlookup.html");
     const id = new ObjectId(req.params.id);
     const collection = client.db("eshop").collection("orders");
     collection.findOne({_id: id}).then((order) => {
-        res.json(order);
+        res.render('orderlookup', { order: order });
     });
 });
 
