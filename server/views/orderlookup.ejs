@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Admin Dashboard</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    }
+    
+    body {
+      margin: 0;
+      padding: 0;
+    }
+    
+    .wrapper {
+      display: flex;
+    }
+    
+    .sidebar {
+      width: 250px;
+      height: 100%;
+      background-color: #333;
+      color: #fff;
+      padding: 20px;
+    }
+    
+    .sidebar h2 {
+      margin-top: 0;
+    }
+    
+    ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+    }
+    
+    li a {
+      display: block;
+      padding: 10px;
+      color: #fff;
+      text-decoration: none;
+    }
+    
+    li a:hover {
+      background-color: #555;
+    }
+    
+    .main-content {
+        flex: 1;
+        padding: 20px;
+    }
+    a:hover, a:visited, a:link, a:active
+    {
+        text-decoration: none;
+        color: #fff;
+    }
+    .container {
+      background-color: #5cb85c;
+      margin: 50px auto;
+      padding: 20px;
+      max-width: 600px;
+      border-radius: 10px;
+      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+      width: 340px;
+    }
+
+    .textbox {
+      display: block;
+      margin: 10px 0;
+      width: 100%;
+      padding: 10px;
+      border-radius: 5px;
+      border: none;
+      background-color: #f5f5f5;
+      font-size: 16px;
+      color: #333333;
+    }
+
+
+	.button {
+		display: block;
+		margin: 20px auto;
+		padding: 10px 20px;
+		border-radius: 5px;
+		border: none;
+		background-color: #333333;
+		color: #ffffff;
+		font-size: 16px;
+		cursor: pointer;
+		transition: background-color 0.3s ease-in-out;
+	}
+
+	.button:hover {
+		background-color: #666666;
+	}
+  </style>
+</head>
+<body>
+  <div class="wrapper">
+    <div class="sidebar">
+      <h2><a href="/admin">Dashboard</a></h2>
+      <ul>
+        <li><a href="/productform">Add product</a></li>
+        <li><a href="/ordersform">Orders</a></li>
+        <li><a href="#">Settings</a></li>
+        <li><a href="#">Logout</a></li>
+      </ul>
+    </div>
+    <div class="container">
+        Order ID
+		<input type="text" class="textbox" value="<%= order._id %>" readonly>
+        First Name
+		<input type="text" class="textbox" value="<%= order.firstName %>">
+        Last Name
+		<input type="text" class="textbox" value="<%= order.lastName %>">
+        E-Mail
+		<input type="text" class="textbox" value="<%= order.email %>">
+        Phone Number
+		<input type="text" class="textbox" value="<%= order.phoneNumber %>">
+        City
+		<input type="text" class="textbox" value="<%= order.city %>">
+        Address
+		<input type="text" class="textbox" value="<%= order.Address %>">
+        Postal Code
+		<input type="text" class="textbox" value="<%= order.postalCode %>">
+        Status
+		<input type="text" class="textbox" value="<%= order.status %>">
+		<button class="button">Save</button>
+	</div>
+    </div>
+  </div>
+</body>
+</html>
