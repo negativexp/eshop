@@ -34,15 +34,10 @@ body {
     text-align: center;
 }
 #checkout {
-    position: absolute;
     border: 1px solid black;
     background-color: white;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     width: 95%;
     height: 95%;
-    visibility: collapse;
 }
 #checkout-exit {
     background-color: red;
@@ -59,7 +54,7 @@ body {
     border-bottom: 1px solid black;
 }
 main {
-    flex-grow: 1;
+    height: 800px;
     overflow-y: scroll;
     display: block;
 }

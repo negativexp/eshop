@@ -1,11 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 import { Header } from "./components/Header";
 import { VisibleProducts } from "./components/VisibleProducts";
 import { Cart } from "./components/Cart";
 import { Notification } from "./components/Notification";
+import { CheckOut } from "./components/CheckOut";
 import "./App.css";
 import "./header.css";
-import { CheckOut } from "./components/CheckOut";
 
 function App() {
   const [APIprdocuts, setAPIprdocuts] = useState([]);
@@ -98,12 +99,35 @@ function App() {
   function hideCheckOut() {
     document.getElementById("checkout").style.visibility = "collapse";
   }
+
   function showCheckOut() {
     document.getElementById("checkout").style.visibility = "visible";
   }
 
   return (
-    <div className="App">
+    // <div className="App">
+    //   <Header
+    //     categories={APIcategories}
+    //     cartPrice={cartPrice}
+    //     search={search}
+    //     showCheckOut={showCheckOut}
+    //     displayCategories={displayCategories}
+    //     searchBySubCategory={searchBySubCategory}
+    //     hideSubCategories={hideSubCategories}
+    //     FirstCapitalLetter={FirstCapitalLetter}
+    //   />
+    //   <main>
+    //     <VisibleProducts
+    //       visibleProducts={visibleProducts}
+    //       addToCart={addToCart}
+    //     />
+    //   </main>
+    //   <Cart cart={cart} />
+    //   <Notification lastAddedItem={lastAddedItem}/>
+    //   <CheckOut cart={cart} hideCheckOut={hideCheckOut}/>
+    // </div>
+
+    <BrowserRouter>
       <Header
         categories={APIcategories}
         cartPrice={cartPrice}
@@ -114,16 +138,24 @@ function App() {
         hideSubCategories={hideSubCategories}
         FirstCapitalLetter={FirstCapitalLetter}
       />
-      <main>
-        <VisibleProducts
-          visibleProducts={visibleProducts}
-          addToCart={addToCart}
+      <Routes>
+        <Route
+          path="/"
+          element={
+            <main>
+              <VisibleProducts
+                visibleProducts={visibleProducts}
+                addToCart={addToCart}
+              />
+            </main>
+          }
         />
-      </main>
-      <Cart cart={cart} />
-      <Notification lastAddedItem={lastAddedItem}/>
-      <CheckOut cart={cart} hideCheckOut={hideCheckOut}/>
-    </div>
+        <Route
+          path="checkout"
+          element={<CheckOut cart={cart} hideCheckOut={hideCheckOut} />}
+        />
+      </Routes>
+    </BrowserRouter>
   );
 }
 

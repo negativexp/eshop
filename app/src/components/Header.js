@@ -1,14 +1,30 @@
-import React from "react";
+import { useSearchParams } from "react-router-dom";
 
 export function Header({ categories, cartPrice, search, showCheckOut, displayCategories, searchBySubCategory, hideSubCategories, FirstCapitalLetter }) {
+
+  const [searchParams, setSearchParams] = useSearchParams();
+  const searchTerm = searchParams.get("query") || "";
+
+  const handleSearch = (e) => {
+    const query = e.target.value;
+
+    if (query) {
+        setSearchParams({ query });
+    } else {
+        setSearchParams({});
+    }
+
+    search(query);
+};
+
   return (
     <header>
       <div className="header-top">
         <div className="header-left">
           <h1>nezukoketamin</h1>
           <div className="header-search">
-            <input id="searchbar" type="text" />
-            <button id="searchbutton" onClick={() => search()}>
+            <input id="searchbar" type="text" value={searchTerm} onChange={handleSearch}/>
+            <button id="searchbutton" onClick={() => {search()}} >
               search
             </button>
           </div>
