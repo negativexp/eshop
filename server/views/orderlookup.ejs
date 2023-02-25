@@ -109,26 +109,53 @@
     </div>
     <div class="container">
         Order ID
-		<input type="text" class="textbox" value="<%= order._id %>" readonly>
+		<input type="text" class="textbox" value="<%= order._id %>" id="orderID" readonly>
         First Name
-		<input type="text" class="textbox" value="<%= order.firstName %>">
+		<input type="text" class="textbox" value="<%= order.firstName %>" id="firstName">
         Last Name
-		<input type="text" class="textbox" value="<%= order.lastName %>">
+		<input type="text" class="textbox" value="<%= order.lastName %>" id="lastName">
         E-Mail
-		<input type="text" class="textbox" value="<%= order.email %>">
+		<input type="text" class="textbox" value="<%= order.email %>" id="email">
         Phone Number
-		<input type="text" class="textbox" value="<%= order.phoneNumber %>">
+		<input type="text" class="textbox" value="<%= order.phoneNumber %>" id="phoneNumber">
         City
-		<input type="text" class="textbox" value="<%= order.city %>">
+		<input type="text" class="textbox" value="<%= order.city %>" id="city">
         Address
-		<input type="text" class="textbox" value="<%= order.Address %>">
+		<input type="text" class="textbox" value="<%= order.address %>" id="address">
         Postal Code
-		<input type="text" class="textbox" value="<%= order.postalCode %>">
+		<input type="text" class="textbox" value="<%= order.postalCode %>" id="postalCode">
         Status
-		<input type="text" class="textbox" value="<%= order.status %>">
-		<button class="button">Save</button>
+		<input type="text" class="textbox" value="<%= order.status %>" id="status">
+		<button class="button" onclick="senddata()">Save</button>
 	</div>
-    </div>
+  </div>
   </div>
 </body>
+<script>
+  function senddata() {
+    const apiUrl = new URL("http://localhost:5000/api/editorder/");
+
+    const order_data = {
+      _id: orderID.value,
+      firstName: firstName.value,
+      lastName: lastName.value,
+      email: email.value,
+      phoneNumber: phoneNumber.value,
+      city: city.value,
+      address: address.value,
+      postalCode: postalCode.value,
+      status: status.value
+    };
+
+    fetch(apiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({orderdata: order_data}),
+      });
+
+      if(confirm('Successfully updated data. Click OK')){
+        window.location.reload();  
+      }
+  };
+</script>
 </html>

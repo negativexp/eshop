@@ -95,10 +95,24 @@ app.post("/api/addproduct/", async (req, res) => {
 // api endpoint to add an order into database
 app.post("/api/addorder/", async (req, res) => {
     const collection = client.db("eshop").collection("orders");
-
-    
+    // TODO: add order into DB
     res.status(200).send("");
 });
+
+// api endpoint to edit and order
+app.post("/api/editorder/", async (req, res) => {
+    const collection = client.db("eshop").collection("orders");
+    const id = new ObjectId(req.body.orderdata._id);
+
+    // now we dont need _id object so we delete it
+    delete req.body.orderdata._id;
+    await collection.updateOne(
+        { _id: id },
+        { $set: req.body.orderdata }
+    );
+
+    res.status(200).send("");
+});  
 
 // listen
 app.listen(5000, () => {
