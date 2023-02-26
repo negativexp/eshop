@@ -1,3 +1,15 @@
+header {
+    padding: 0% 2%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.logo {
+    display: flex;
+    align-items: center;
+}
+
 .header-top {
     padding-left: 5%;
     padding-right: 5%;
@@ -84,4 +96,10 @@ header button {
     padding-left: 10px;
     padding-right: 10px;
     font-size: 16px;
+}
+
+@media (max-width: 600px) {
+    .logo {
+        flex-flow: column;
+    }
 }

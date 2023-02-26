@@ -3,15 +3,14 @@
     padding: 0;
     box-sizing: border-box;
 }
-body {
+#root {
     height: 100vh;
     width: 100vw;
-    overflow: hidden;
-}
-.App {
     display: flex;
     flex-flow: column;
-    height: 100vh;
+}
+body {
+    overflow: hidden;
 }
 .cart {
     position: absolute;
@@ -54,7 +53,7 @@ body {
     border-bottom: 1px solid black;
 }
 main {
-    height: 800px;
+    flex-grow: 1;
     overflow-y: scroll;
     display: block;
 }
