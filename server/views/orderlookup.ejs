@@ -126,6 +126,8 @@
 		<input type="text" class="textbox" value="<%= order.postalCode %>" id="postalCode">
         Ordered products
     <input type="text" class="textbox" value="<%= order.orderedProducts %>" id="orderedProducts">
+        Price
+    <input type="text" class="textbox" value="<%= order.totalPrice %>" id="totalPrice">
         Status
     <select name="status" class="status" id="status">
       <option value="processing" <%= order.status === "processing" ? "selected" : "" %>>processing</option>
@@ -153,7 +155,8 @@
       address: address.value,
       postalCode: postalCode.value,
       status: statusDropdown.value,
-      orderedProducts: orderedProducts.value
+      orderedProducts: orderedProducts.value,
+      totalPrice: totalPrice.value
     };
 
     fetch(apiUrl, {

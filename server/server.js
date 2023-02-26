@@ -20,7 +20,7 @@ const client = new MongoClient(uri, {
 
 async function connectToMongoDB() {
     await client.connect()
-    console.log("MongoDB connected!")
+    console.log("[+] MongoDB connected")
 }
 connectToMongoDB()
 
@@ -43,7 +43,7 @@ app.get("/productform", (req, res) => {
     res.sendFile(currentPath + "product_form.html");
 });
 
-// path to orders page
+// path to all orders page
 app.get("/ordersform", (req, res) => {
     const currentPath = path.join(__dirname, '/admin/');
     res.sendFile(currentPath + "orders.html");
@@ -65,7 +65,7 @@ app.get("/api/categories/", async (req, res) => {
     res.json(categories)
 });
 
-// api gets all orders
+// api to get all orders
 app.get("/api/orders/", async (req, res) => {
     const collection = client.db("eshop").collection("orders");
     const orders = await collection.find().toArray();
@@ -104,7 +104,7 @@ app.post("/api/editorder/", async (req, res) => {
     const collection = client.db("eshop").collection("orders");
     const id = new ObjectId(req.body.orderdata._id);
 
-    // now we dont need _id object so we delete it
+    // now we dont need _id object so we delete it & update DB
     delete req.body.orderdata._id;
     await collection.updateOne(
         { _id: id },
@@ -116,5 +116,5 @@ app.post("/api/editorder/", async (req, res) => {
 
 // listen
 app.listen(5000, () => {
-    console.log("server started on port 5000")
+    console.log("[+] server started on port 5000")
 });
