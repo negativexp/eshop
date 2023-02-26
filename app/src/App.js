@@ -47,38 +47,10 @@ function App() {
       "collapse";
   }
 
-  const [searchKeyword, setSearchKeyword] = useState("");
-  const search = (keyword) => {
-    setSearchKeyword(keyword)
-    // var searchValue = document.getElementById("searchbar").value;
-    // searchValue = searchValue.toLowerCase();
-    // const matchingObjects = [];
-
-    // //everything has to be lowercase to check if the search value matches
-    // //the value we are trying to look for
-
-    // //iritate through every object in apiproducts
-    // for (let i = 0; i < APIprdocuts.length; i++) {
-    //   //get object
-    //   const obj = APIprdocuts[i];
-    //   for (let prop in obj) {
-    //     //chceck if field is an array in object
-    //     if (Array.isArray(obj[prop])) {
-    //       //check if it includes the value
-    //       if (obj[prop].toLowerCase().includes(searchValue)) {
-    //         //if so, push the object into matching objects
-    //         matchingObjects.push(obj);
-    //         break;
-    //       }
-    //     } else {
-    //       if (obj[prop].toLowerCase().includes(searchValue)) {
-    //         matchingObjects.push(obj);
-    //         break;
-    //       }
-    //     }
-    //   }
-    // }
-    // setVisibleProducts(matchingObjects);
+  const [searchQuery, setSearchQuery] = useState("")
+  function search(query) {
+    console.log("search")
+    setSearchQuery(query)
   }
 
   function searchBySubCategory(item) {
@@ -100,10 +72,6 @@ function App() {
 
   function hideCheckOut() {
     document.getElementById("checkout").style.visibility = "collapse";
-  }
-
-  function showCheckOut() {
-    document.getElementById("checkout").style.visibility = "visible";
   }
 
   return (
@@ -134,26 +102,24 @@ function App() {
         categories={APIcategories}
         cartPrice={cartPrice}
         search={search}
-        showCheckOut={showCheckOut}
         displayCategories={displayCategories}
         searchBySubCategory={searchBySubCategory}
         hideSubCategories={hideSubCategories}
         FirstCapitalLetter={FirstCapitalLetter}
       />
       <Routes>
-        <Route
-          path="/"
+        <Route path="/products"
           element={
             <main>
               <VisibleProducts
                 addToCart={addToCart}
-                searchKeyword={searchKeyword}
+                searchQuery={searchQuery}
               />
             </main>
           }
         />
         <Route
-          path="checkout"
+          path="/checkout"
           element={<CheckOut cart={cart} hideCheckOut={hideCheckOut} />}
         />
       </Routes>

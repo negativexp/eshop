@@ -1,21 +1,22 @@
-import { useSearchParams } from "react-router-dom";
+import { useState } from "react";
+import { useSearchParams, Link, useNavigate } from "react-router-dom";
 
-export function Header({ categories, cartPrice, search, showCheckOut, displayCategories, searchBySubCategory, hideSubCategories, FirstCapitalLetter }) {
+export function Header({ categories, cartPrice, search, displayCategories, searchBySubCategory, hideSubCategories, FirstCapitalLetter }) {
 
-  const [searchParams, setSearchParams] = useSearchParams();
-  const searchTerm = searchParams.get("query") || "";
+  const [searchQuery, setSearchQuery] = useState('');
+  const navigate = useNavigate();
 
-  const handleSearch = () => {
-    const query = document.getElementById("searchbar").value
-
-    if (query) {
-        setSearchParams({ query });
+  const handleSearchQuery = () => {
+    if (searchQuery) {
+      navigate(`/products?search=${searchQuery}`);
     } else {
-        setSearchParams({});
+      navigate('/products');
     }
+  };
 
-    search(query);
-};
+  const handleInputChange = (event) => {
+    setSearchQuery(event.target.value);
+  };
 
   return (
     <header>
@@ -23,15 +24,12 @@ export function Header({ categories, cartPrice, search, showCheckOut, displayCat
         <div className="header-left">
           <h1>nezukoketamin</h1>
           <div className="header-search">
-            <input id="searchbar" type="text" value={searchTerm} onChange={handleSearch}/>
-            <button id="searchbutton" onClick={() =>
-              {search()}}>
-              search
-            </button>
-          </div>
+            <input id="searchbar" type="text" value={searchQuery} onChange={handleInputChange}/>
+            <button id="searchbutton" onClick={handleSearchQuery}> search </button>
+          </div>  
         </div>
         <div className="header-right">
-          <button onClick={() => showCheckOut()}>{cartPrice} Kč</button>
+          <Link to="/checkout">{cartPrice} Kč</Link>
         </div>
       </div>
       <div className="header-categories">
