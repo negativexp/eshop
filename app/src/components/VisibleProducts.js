@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useSearchParams } from "react-router-dom";
 import { Product } from "./Product";
 
-export function VisibleProducts({ addToCart, searchQuery }) {
+export function VisibleProducts({ addToCart }) {
   const [products, setProducts] = useState([]);
   const [searchParams] = useSearchParams();
 

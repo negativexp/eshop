@@ -47,12 +47,6 @@ function App() {
       "collapse";
   }
 
-  const [searchQuery, setSearchQuery] = useState("")
-  function search(query) {
-    console.log("search")
-    setSearchQuery(query)
-  }
-
   function searchBySubCategory(item) {
     document.getElementById("searchbar").value = item;
     document.getElementById("searchbutton").click();
@@ -101,7 +95,6 @@ function App() {
       <Header
         categories={APIcategories}
         cartPrice={cartPrice}
-        search={search}
         displayCategories={displayCategories}
         searchBySubCategory={searchBySubCategory}
         hideSubCategories={hideSubCategories}
@@ -113,7 +106,6 @@ function App() {
             <main>
               <VisibleProducts
                 addToCart={addToCart}
-                searchQuery={searchQuery}
               />
             </main>
           }

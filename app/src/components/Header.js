@@ -1,7 +1,7 @@
 import { useState } from "react";
-import { useSearchParams, Link, useNavigate } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
-export function Header({ categories, cartPrice, search, displayCategories, searchBySubCategory, hideSubCategories, FirstCapitalLetter }) {
+export function Header({ categories, cartPrice, displayCategories, searchBySubCategory, hideSubCategories, FirstCapitalLetter }) {
 
   const [searchQuery, setSearchQuery] = useState('');
   const navigate = useNavigate();
@@ -18,13 +18,18 @@ export function Header({ categories, cartPrice, search, displayCategories, searc
     setSearchQuery(event.target.value);
   };
 
+  const handleSubCategorySearch = (category) => {
+    document.getElementById("searchbar").value = category
+    navigate(`/products?search=${category}`);
+  }
+
   return (
     <header>
       <div className="header-top">
         <div className="header-left">
           <h1>nezukoketamin</h1>
           <div className="header-search">
-            <input id="searchbar" type="text" value={searchQuery} onChange={handleInputChange}/>
+            <input id="searchbar" type="text" onChange={handleInputChange}/>
             <button id="searchbutton" onClick={handleSearchQuery}> search </button>
           </div>  
         </div>
@@ -44,7 +49,7 @@ export function Header({ categories, cartPrice, search, displayCategories, searc
           <div className="sub-category" id={item.category}>
             {item.subCategories.map((item) => (
               <div className="each-subCategory">
-                <button onClick={() => searchBySubCategory(item)}>
+                <button onClick={() => handleSubCategorySearch(item)}>
                   {item}
                 </button>
               </div>
