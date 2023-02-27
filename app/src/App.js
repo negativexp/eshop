@@ -7,6 +7,7 @@ import { Notification } from "./components/Notification";
 import { Categories } from "./components/Categories";
 import { SubCategories } from "./components/SubCategories";
 import { CheckOut } from "./components/CheckOut";
+import { SearchAndCart } from "./components/SearchAndCart";
 import "./App.css";
 import "./components/styles/header.css";
 
@@ -36,7 +37,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header cartPrice={cartPrice} />
+      <Header cartPrice={cartPrice}/>
       <Categories categories={APIcategories} />
       <SubCategories categories={APIcategories} />
       <Routes>

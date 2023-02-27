@@ -1,22 +1,37 @@
 header {
-    padding: 0% 2%;
+    padding: 25px 2%;
     display: flex;
     align-items: center;
     justify-content: space-between;
+}
+
+.buttons {
+    display: flex;
+    gap: 10px;
+}
+.buttons button, a {
+    border: 1px solid black;
+    padding: 0 10px;
+    text-decoration: none;
+    color: black;
+    font-weight: bolder;
+    border-radius: 5px;
+}
+
+header h1 {
+    padding-left: 10px;
+}
+
+img {
+    height: 75px;
 }
 
 .logo {
     display: flex;
+    float: left;
     align-items: center;
 }
 
-.header-top {
-    padding-left: 5%;
-    padding-right: 5%;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
 .header-left {
     height: 45px;
     display: flex;
@@ -27,45 +42,18 @@ header {
 .header-right button:hover {
     cursor: pointer;
 }
-.header-search {
-    display: flex;
-}
-.header-search button {
-    border-right: 1px solid black;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    border-left: 0px solid black;
-    border-bottom-right-radius: 5px;
-    border-top-right-radius: 5px;
-    padding: 3px 15px;
-    background-color: gray;
-}
-.header-search button:hover {
-    cursor: pointer;
-}
-.header-search input {
-    width: 250px;
-    border-left: 1px solid black;
-    border-top: 1px solid black;
-    border-bottom: 1px solid black;
-    border-right: 0px solid black;
-    border-bottom-left-radius: 5px;
-    border-top-left-radius: 5px;
-}
-.header-search input:focus {
-    outline: none;
-}
 .header-categories {
     padding: 10px;
     display: flex;
     gap: 15px;
 }
 .header-categories button {
-    background-color: transparent;
-    border: none;
+    border: 1px solid black;
+    padding: 5px 20px;
+    border-radius: 10px;
 }
 .header-categories button:hover {
-    cursor: pointer;
+    cursor:pointer;
 }
 .sub-category {
     position: absolute;
@@ -96,10 +84,4 @@ header button {
     padding-left: 10px;
     padding-right: 10px;
     font-size: 16px;
-}
-
-@media (max-width: 600px) {
-    .logo {
-        flex-flow: column;
-    }
 }
