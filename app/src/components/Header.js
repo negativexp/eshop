@@ -23,10 +23,12 @@ export function Header({cartPrice}) {
         <h1>nezuko</h1>
       </div>
       <div className="buttons">
-        <input id="searchbar" type="text" onChange={handleInputChange} />
-        <button id="searchbutton" onClick={handleSearchQuery}>
-          Hledat
-        </button>
+        <div className="search">
+          <input id="searchbar" type="text" onChange={handleInputChange} />
+          <button id="searchbutton" onClick={handleSearchQuery}>
+            Hledat
+          </button>
+        </div>
         <Link to="/checkout">Košík ({cartPrice} Kč)</Link>
       </div>
     </header>

@@ -3,20 +3,47 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    height: 120px;
+}
+@media (max-width: 900px) {
+    header {
+        flex-flow: column;
+        gap: 10px;
+    }
+}
+
+.search {
+    display: flex;
+}
+.search button {
+    padding: 5px;
+    font-weight: bolder;
+    border: 1px solid black;
+    border-left: 0px;
+
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+.search input {
+    padding-left: 10px;
+    border: 1px solid black;
+    border-right: 0px;
+    width: 250px;
+}
+.search input:focus {
+    outline: none;
 }
 
 .buttons {
     display: flex;
     gap: 10px;
 }
-.buttons button, a {
-    border: 1px solid black;
-    padding: 0 10px;
-    text-decoration: none;
-    color: black;
+.buttons a {
+    padding: 5px;
     font-weight: bolder;
+    border: 1px solid black;
+    color: black;
     border-radius: 5px;
+    text-decoration: none;
 }
 
 header h1 {
@@ -45,7 +72,8 @@ img {
 }
 .header-categories {
     height: 70px;
-    overflow-x: scroll;
+    /* overflow-y: hidden;
+    overflow-x: scroll; */
     padding: 10px;
     display: flex;
     gap: 15px;
@@ -68,7 +96,7 @@ img {
 }
 .sub-category {
     position: absolute;
-    background-color: rgb(155, 155, 155);
+    background-color: white;
     width: 50%;
     left: 50%;
     transform: translateX(-50%);

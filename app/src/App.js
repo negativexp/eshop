@@ -38,10 +38,6 @@ function App() {
     }
   }
 
-  function hideCheckOut() {
-    document.getElementById("checkout").style.visibility = "collapse";
-  }
-
   return (
     <BrowserRouter>
       <Header cartPrice={cartPrice}/>
