@@ -1,4 +1,3 @@
-import logo from "../images/logo.png"
 import { useState } from "react";
 import { useNavigate, Link } from "react-router-dom";
 
@@ -10,8 +9,6 @@ export function Header({cartPrice}) {
   const handleSearchQuery = () => {
     if (searchQuery) {
       navigate(`/products?search=${searchQuery}`);
-    } else {
-      navigate("/products");
     }
   };
 
@@ -22,7 +19,7 @@ export function Header({cartPrice}) {
   return (
     <header>
       <div className="logo">
-        <img src={logo}></img>
+        <img src="http://localhost:5000/images/logo/logo.png"></img>
         <h1>nezuko</h1>
       </div>
       <div className="buttons">

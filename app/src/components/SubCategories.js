@@ -23,6 +23,7 @@ export function SubCategories({categories}) {
         <div className="header-subCategories">
         {categories.map((item) => (
           <div className="sub-category" id={item.category}>
+            <h1>{item.category}</h1>
             {item.subCategories.map((item) => (
               <div className="each-subCategory">
                 <button onClick={() => handleSubCategorySearch(item)}>

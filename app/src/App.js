@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useFetcher } from "react-router-dom";
 import { Header } from "./components/Header";
 import { VisibleProducts } from "./components/VisibleProducts";
 import { Cart } from "./components/Cart";
@@ -24,10 +24,17 @@ function App() {
     fetchData();
   }, []);
 
+  useEffect(() => {
+    var final = 0
+    cart.forEach((item) => {
+      final += parseInt(item.price)
+    })
+    setCartPrice(final)
+  }, [cart])
+
   function addToCart(item) {
     if (!cart.includes(item)) {
       setCart([...cart, item]);
-      setCartPrice(cartPrice + parseInt(item.price));
     }
   }
 
@@ -51,7 +58,7 @@ function App() {
         />
         <Route
           path="/checkout"
-          element={<CheckOut cart={cart} hideCheckOut={hideCheckOut} />}
+          element={<CheckOut cart={cart} setCart={setCart} />}
         />
       </Routes>
     </BrowserRouter>

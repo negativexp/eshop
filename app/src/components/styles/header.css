@@ -3,6 +3,7 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    height: 120px;
 }
 
 .buttons {
@@ -43,14 +44,24 @@ img {
     cursor: pointer;
 }
 .header-categories {
+    height: 70px;
+    overflow-x: scroll;
     padding: 10px;
     display: flex;
     gap: 15px;
 }
 .header-categories button {
+    height: fit-content;
+    font-weight: bolder;
     border: 1px solid black;
     padding: 5px 20px;
     border-radius: 10px;
+    background: white;
+    transition: background .1s ease-in-out;
+}
+.header-categories button:hover {
+    background: rgb(146, 146, 146);
+    transition: background .1s ease-in-out;
 }
 .header-categories button:hover {
     cursor:pointer;
