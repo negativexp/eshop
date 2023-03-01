@@ -71,9 +71,6 @@ img {
     cursor: pointer;
 }
 .header-categories {
-    height: 70px;
-    /* overflow-y: hidden;
-    overflow-x: scroll; */
     padding: 10px;
     display: flex;
     gap: 15px;

@@ -88,6 +88,7 @@ app.post("/api/addproduct/", async (req, res) => {
 
     req.body.productdata.productID = productCount
     await collection.insertOne(req.body.productdata);
+    console.log("[+] Product added")
 
     res.status(200).send("");
 });

@@ -47,9 +47,7 @@ function App() {
         <Route
           path="/products"
           element={
-            <main>
               <VisibleProducts addToCart={addToCart} />
-            </main>
           }
         />
         <Route
