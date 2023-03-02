@@ -1,7 +1,9 @@
 <!DOCTYPE html>
 <html>
 <head>
+  
   <title>Admin Dashboard</title>
+  <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <style>
     * {
       box-sizing: border-box;
@@ -15,6 +17,7 @@
     
     .wrapper {
       display: flex;
+      position: relative;
     }
     
     .sidebar {
@@ -94,6 +97,81 @@
 	.button:hover {
 		background-color: #666666;
 	}
+
+  #status-circles {
+    position: absolute;
+    top: 50%;
+    right: 0;
+    transform: translateY(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .status-circle {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background-color: red;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 100px;
+    color: black;
+    font-weight: bold;
+    margin-bottom: 100px;
+  }
+
+  .active{
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 100px;
+    color: white;
+    animation: pulsing 1s ease-out infinite;
+  }
+
+  @keyframes pulsing {
+    0% {
+      transform: scale(1);
+    }
+    50% {
+      transform: scale(1.1);
+    }
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  .done {
+    width: 110px;
+    height: 110px;
+    border-radius: 50%;
+    background-color: green;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 100px;
+    color: white;
+  }
+  
+  .status-line {
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-20%, -60%);
+    width: 10px;
+    height: 450px;
+    background-color: black;
+    z-index: -1;
+  }
+
+
   </style>
 </head>
 <body>
@@ -107,6 +185,7 @@
         <li><a href="#">Logout</a></li>
       </ul>
     </div>
+
     <div class="container">
         Order ID
 		<input type="text" class="textbox" value="<%= order._id %>" id="orderID" readonly>
@@ -135,10 +214,54 @@
       <option value="closed" <%= order.status === "closed" ? "selected" : "" %>>closed</option>
     </select>
 
+  
 		<button class="button" onclick="senddata()">Save</button>
   	</div>
   </div>
   </div>
+
+  <div id="status-circles">
+    <div class="status-circle" id="processing-circle">
+      <span class="status-label">⚙️ Processing</span>
+    </div>
+    <div class="status-circle" id="shipped-circle">
+      <span class="status-label">📦 Shipped</span>
+    </div>
+    <div class="status-circle" id="closed-circle">
+      <span class="status-label">✅ Closed</span>
+    </div>
+    <div class="status-line"></div>
+  </div>
+  
+  <script>
+    $(document).ready(function() {
+    updateStatusCircles();
+
+    $('#status').on('change', function() {
+        updateStatusCircles();
+    });
+
+    function updateStatusCircles() {
+        var status = $('#status').val();
+
+        if (status === 'processing') {
+            $('#processing-circle').addClass('active').addClass('done');
+            $('#shipped-circle').removeClass('active').removeClass('done');
+            $('#closed-circle').removeClass('active').removeClass('done');
+        } else if (status === 'shipped') {
+            $('#processing-circle').removeClass('active').addClass('done');
+            $('#shipped-circle').addClass('active').addClass('done');
+            $('#closed-circle').removeClass('active').removeClass('done');
+        } else if (status === 'closed') {
+            $('#processing-circle').removeClass('active').addClass('done');
+            $('#shipped-circle').removeClass('active').addClass('done');
+            $('#closed-circle').addClass('active').addClass('done');
+        }
+    }
+});
+  </script>
+
+</div>
 </body>
 <script>
   function senddata() {
@@ -173,5 +296,6 @@
   statusDropdown.addEventListener("change", () => {
   order_data.status = statusDropdown.value;
 });
+
 </script>
 </html>
