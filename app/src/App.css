@@ -35,10 +35,22 @@ body {
     justify-content: center;
     text-align: center;
 }
+.cart-item {
+    position: relative;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+    border: 1px solid black;
+}
+.cart-item button {
+    position: absolute;
+    left: 200px;
+    top: 65%;
+}
 .cart-items {
     display: flex;
     flex-flow: column;
-    gap: 10px;
+    gap: 20px;
 }
 .visible-products {
     overflow-y: scroll;

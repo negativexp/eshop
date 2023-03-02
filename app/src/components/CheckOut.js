@@ -22,9 +22,14 @@ export function CheckOut({ cart, setCart }) {
           <>
             {cart.map((item) => (
               <div className="cart-item">
-                <h1>{item.title}</h1>
-                <p>#{item.productID}</p>
-                <p>{item.price} kč</p>
+                <div className="cart-image">
+                  <img src={"http://localhost:5000/images/products/"+ item.productID +".jpg"}/>
+                </div>
+                <div className="product-info">
+                  <h1>{item.title}</h1>
+                  <p>#{item.productID}</p>
+                  <p>{item.price} kč</p>
+                </div>
                 <button onClick={() => handleRemoveItem(item)}>remove</button>
               </div>
             ))}
