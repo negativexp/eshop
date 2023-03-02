@@ -37,7 +37,6 @@ export function VisibleProducts({ addToCart }) {
         }
         setProducts(matchingObjects);
       });
-      console.log(products[2].id)
   }, [searchParams]);
 
   return (
