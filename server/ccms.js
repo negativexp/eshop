@@ -185,7 +185,7 @@ async function addOrders() {
 
 //test().catch(console.dir)
 //MongoInsertCategory().catch(console.dir)
-//MongoDeleteAll().catch(console.dir);
+MongoDeleteAll().catch(console.dir);
 //MongoInsertObject().catch(console.dir);
 //MongoInsertCategory().catch(console.dir)
-addOrders()
+//addOrders()

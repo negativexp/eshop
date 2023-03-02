@@ -4,7 +4,7 @@ export function Product({ product, addToCart }) {
     return (
       <div className="product">
         <div className="product-img">
-          <img />
+          <img src={"http://localhost:5000/images/products/"+ product.productID +".jpg"}/>
         </div>
         <div className="product-title">
           <h1>{product.title}</h1>

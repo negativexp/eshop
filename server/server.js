@@ -2,11 +2,14 @@ const { MongoClient } = require('mongodb');
 const { ObjectId } = require('mongodb');
 const express = require("express");
 const { connect } = require('http2');
+const fs = require('fs');
 const bodyParser = require('body-parser');
 const path = require('path');
 const app = express()
 
-app.use(bodyParser.json());
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
+// app.use(bodyParser.json());
 app.use("/static", express.static(path.join(__dirname, "..", "app", "build", "static")));
 app.use("/images", express.static("images"))
 app.set('view engine', 'ejs');
@@ -83,13 +86,23 @@ app.get("/api/order/:id", async (req, res) => {
 
 // api endpoint to add products into database
 app.post("/api/addproduct/", async (req, res) => {
+    
     const collection = client.db("eshop").collection("products");
     const productCount = await (await collection.countDocuments()).toString().padStart(6, "0")
-
     req.body.productdata.productID = productCount
+
+    const image64 = req.body.productdata.image64
+
+    const base64Data = image64.replace(/^data:image\/jpeg;base64,/, "");
+    const imageBuffer = Buffer.from(base64Data, "base64");
+    const filename = `${req.body.productdata.productID}.jpg`;
+    fs.writeFileSync("images/products/"+filename, imageBuffer);
+
+    const productData = req.body.productdata;
+    delete productData.image64;
+
     await collection.insertOne(req.body.productdata);
     console.log("[+] Product added")
-
     res.status(200).send("");
 });
 

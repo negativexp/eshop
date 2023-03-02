@@ -1,253 +1,306 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <title>Admin Panel - Add Product</title>
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      background-color: #f0f0f0;
-    }
-    h1 {
-      text-align: center;
-      margin-top: 50px;
-    }
-    form {
-      position: relative;
-      max-width: 500px;
-      margin: 50px auto;
-      padding: 20px;
-      background-color: #fff;
-      border-radius: 5px;
-    }
-    input[type=text], select, textarea {
-      width: 100%;
-      padding: 12px;
-      border: 1px solid #ccc;
-      border-radius: 4px;
-      box-sizing: border-box;
-      margin-top: 6px;
-      margin-bottom: 16px;
-      resize: vertical;
-    }
-    input[type=submit] {
-      background-color: #4CAF50;
-      color: #fff;
-      padding: 12px 20px;
-      border: none;
-      border-radius: 4px;
-      cursor: pointer;
-    }
-    input[type=submit]:hover {
-      background-color: #45a049;
-    }
-    button {
-      background-color: green;
-      border: none;
-      color: white;
-      padding: 10px 20px;
-      font-size: 16px;
-      font-weight: bold;
-      text-transform: uppercase;
-      border-radius: 4px;
-      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-      cursor: pointer;
-      transition: background-color 0.3s ease-in-out;
-    }
-    button:hover {
-      background-color: darkgreen;
-    }
-
-    .back-button {
-      background-color: green;
-      border: none;
-      color: white;
-      padding: 10px 20px;
-      font-size: 16px;
-      cursor: pointer;
-      border-radius: 5px;
-      position: absolute;
-      bottom: 0;
-      right: 0;
-      margin: 20px;
+  <head>
+    <meta charset="UTF-8" />
+    <title>Admin Panel - Add Product</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f0f0f0;
+      }
+      h1 {
+        text-align: center;
+        margin-top: 50px;
+      }
+      form {
+        position: relative;
+        max-width: 500px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #fff;
+        border-radius: 5px;
+      }
+      input[type="text"],
+      select,
+      textarea {
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
+        resize: vertical;
+      }
+      input[type="submit"] {
+        background-color: #4caf50;
+        color: #fff;
+        padding: 12px 20px;
+        border: none;
+        border-radius: 4px;
+        cursor: pointer;
+      }
+      input[type="submit"]:hover {
+        background-color: #45a049;
+      }
+      button {
+        background-color: green;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        font-weight: bold;
+        text-transform: uppercase;
+        border-radius: 4px;
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+        cursor: pointer;
+        transition: background-color 0.3s ease-in-out;
+      }
+      button:hover {
+        background-color: darkgreen;
       }
 
-    .back-button:hover {
-      background-color: #ddd;
+      .back-button {
+        background-color: green;
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        position: absolute;
+        bottom: 0;
+        right: 0;
+        margin: 20px;
+      }
+
+      .back-button:hover {
+        background-color: #ddd;
       }
 
       * {
-      box-sizing: border-box;
-      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    }
-    
-    body {
-      margin: 0;
-      padding: 0;
-    }
-    
-    .wrapper {
-      display: flex;
-    }
-    
-    .sidebar {
-      width: 250px;
-      height: 100%;
-      background-color: #333;
-      color: #fff;
-      padding: 20px;
-    }
-    
-    .sidebar h2 {
-      margin-top: 0;
-    }
-    
-    ul {
-      list-style: none;
-      padding: 0;
-      margin: 0;
-    }
-    
-    li a {
-      display: block;
-      padding: 10px;
-      color: #fff;
-      text-decoration: none;
-    }
-    
-    li a:hover {
-      background-color: #555;
-    }
-    
-    .main-content {
+        box-sizing: border-box;
+        font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
+      }
+
+      body {
+        margin: 0;
+        padding: 0;
+      }
+
+      .wrapper {
+        display: flex;
+      }
+
+      .sidebar {
+        width: 250px;
+        height: 100%;
+        background-color: #333;
+        color: #fff;
+        padding: 20px;
+      }
+
+      .sidebar h2 {
+        margin-top: 0;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+
+      li a {
+        display: block;
+        padding: 10px;
+        color: #fff;
+        text-decoration: none;
+      }
+
+      li a:hover {
+        background-color: #555;
+      }
+
+      .main-content {
         flex: 1;
         padding: 20px;
-    }
+      }
 
-    a:hover, a:visited, a:link, a:active
-    {
+      a:hover,
+      a:visited,
+      a:link,
+      a:active {
         text-decoration: none;
         color: #fff;
-    }
-  </style>
-</head>
-<body>
-  
-  <div class="wrapper">
-    <div class="sidebar">
-      <h2><a href="/admin">Dashboard</a></h2>
-      <ul>
-        <li><a href="/productform">Add product</a></li>
-        <li><a href="/ordersform">Orders</a></li>
-        <li><a href="#">Settings</a></li>
-        <li><a href="#">Logout</a></li>
-      </ul>
+      }
+      input[type="file"] {
+        padding-top: 15px;
+        padding-bottom: 15px;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="wrapper">
+      <div class="sidebar">
+        <h2><a href="/admin">Dashboard</a></h2>
+        <ul>
+          <li><a href="/productform">Add product</a></li>
+          <li><a href="/ordersform">Orders</a></li>
+          <li><a href="#">Settings</a></li>
+          <li><a href="#">Logout</a></li>
+        </ul>
+      </div>
+
+      <form onsubmit="return false">
+        <label for="name">Product Title</label>
+        <input
+          type="text"
+          id="title"
+          name="title"
+          placeholder="Enter product title..."
+        />
+
+        <label for="description">Product Short Description</label>
+        <textarea
+          id="description"
+          name="description"
+          placeholder="Enter product description..."
+        ></textarea>
+
+        <label for="description">Product Long Description</label>
+        <textarea
+          id="longdescription"
+          name="longdescription"
+          placeholder="Enter long product description..."
+        ></textarea>
+
+        <label for="price">Product Price</label>
+        <input
+          type="text"
+          id="price"
+          name="price"
+          placeholder="Enter product price (only value)"
+        />
+
+        <!-- added: category and categories -->
+        <label for="category">Product Category</label>
+        <select id="category" name="category">
+          <option value="electronics">Electronics</option>
+          <option value="sport">Sport</option>
+          <option value="house">House</option>
+          <option value="garden">Garden</option>
+        </select>
+        <label for="categories">Product sub-category</label>
+        <select id="categories" name="categories">
+          <option value="gpu">GPU</option>
+          <option value="cpu">CPU</option>
+          <option value="herní konzole">Herní konzole</option>
+        </select>
+
+        <label for="image">Product Image</label><br>
+        <input
+          type="file"
+          id="image"
+          name="image"
+          accept="image/png, image/jpeg"
+        />
+
+        <button type="submit" onclick="senddata()">Add product</button>
+        <button class="back-button" onclick="window.history.back();">
+          GO BACK
+        </button>
+      </form>
     </div>
 
-    <form onsubmit="return false">
-    <label for="name">Product Title</label>
-    <input type="text" id="title" name="title" placeholder="Enter product title...">
+    <script>
+      async function senddata() {
+        const apiUrl = new URL("http://localhost:5000/api/addproduct/");
 
-    <label for="description">Product Short Description</label>
-    <textarea id="description" name="description" placeholder="Enter product description..."></textarea>
-    
-    <label for="description">Product Long Description</label>
-    <textarea id="longdescription" name="longdescription" placeholder="Enter long product description..."></textarea>
-    
-    <label for="price">Product Price</label>
-    <input type="text" id="price" name="price" placeholder="Enter product price (only value)">
+        if (
+          title.value == "" ||
+          description.value == "" ||
+          longdescription.value == "" ||
+          price.value == ""
+        ) {
+          alert("Enter a data!");
+          return;
+        }
 
-    <!-- added: category and categories -->
-    <label for="category">Product Category</label>
-    <select id="category" name="category">
-      <option value="electronics">Electronics</option>
-      <option value="sport">Sport</option>
-      <option value="house">House</option>
-      <option value="garden">Garden</option>
-    </select>
-    <label for="categories">Product sub-category</label>
-    <select id="categories" name="categories">
-      <option value="gpu">GPU</option>
-      <option value="cpu">CPU</option>
-      <option value="herní konzole">Herní konzole</option>
-    </select>
-    
-    <button type="submit" onclick="senddata()">Add product</button>
-    <button class="back-button" onclick="window.history.back();">GO BACK</button>
+        const convertBase64 = (file) => {
+          return new Promise((resolve, reject) => {
+            const fileReader = new FileReader();
+            fileReader.readAsDataURL(file);
 
-  </form>
+            fileReader.onload = () => {
+              resolve(fileReader.result);
+            };
 
-  </div>
+            fileReader.onerror = (error) => {
+              reject(error);
+            };
+          });
+        };
 
-  <script>
-    function senddata() {
-      const apiUrl = new URL("http://localhost:5000/api/addproduct/");
+        const base64 = await convertBase64(document.getElementById("image").files[0])
 
-      if(title.value == '' || description.value == '' || longdescription.value == '' || price.value == ''){
-        alert("Enter a data!");
-        return;
-      }
+        const product_data = {
+          title: title.value,
+          shortDescription: description.value,
+          longDescription: longdescription.value,
+          price: price.value,
+          category: category.value,
+          subCategory: categories.value,
+          image64: base64
+        };
 
-      const product_data = {
-        title: title.value,
-        shortDescription: description.value,
-        longDescription: longdescription.value,
-        price: price.value,
-        category: category.value,
-        subCategory: categories.value
-      };
-
-      fetch(apiUrl, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({productdata: product_data}),
+        fetch(apiUrl, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ productdata: product_data }),
         });
 
-        if(confirm('Successfully added data. Click OK')){
-          window.location.reload();  
+        if (confirm("Successfully added data. Click OK")) {
+          window.location.reload();
         }
-    };
+      }
 
-    //added: Chaning sub categories based on main category
-    const categories = document.getElementById("categories")
-    const category = document.getElementById("category")
-    category.addEventListener("change", (e) => {
-      if(category.value == "electronics") {
-        const values = ["GPU", "CPU", "Herní konzole"]
-        changeCategoriesValues(values)
-      }
-      if(category.value == "sport") {
-        const values = ["Zimní", "Fitness", "Výživa"]
-        changeCategoriesValues(values)
-      }
-      if(category.value == "house") {
-        const values = ["Mopy", "Pánve"]
-        changeCategoriesValues(values)
-      }
-      if(category.value == "garden") {
-        const values = ["Sekačky", "Skleníky", "Brusky"]
-        changeCategoriesValues(values)
-      }
-    })
-
-    function deleteAllValues() {
-      while (categories.options.length > 0) {
-        categories.remove(0);
-      }
-    }
-
-    function changeCategoriesValues(values) {
-      deleteAllValues()
-      values.forEach(element => {
-        const option = document.createElement("option");
-        option.value = element.toLowerCase()
-        option.textContent = element
-        categories.appendChild(option)
+      //added: Chaning sub categories based on main category
+      const categories = document.getElementById("categories");
+      const category = document.getElementById("category");
+      category.addEventListener("change", (e) => {
+        if (category.value == "electronics") {
+          const values = ["GPU", "CPU", "Herní konzole"];
+          changeCategoriesValues(values);
+        }
+        if (category.value == "sport") {
+          const values = ["Zimní", "Fitness", "Výživa"];
+          changeCategoriesValues(values);
+        }
+        if (category.value == "house") {
+          const values = ["Mopy", "Pánve"];
+          changeCategoriesValues(values);
+        }
+        if (category.value == "garden") {
+          const values = ["Sekačky", "Skleníky", "Brusky"];
+          changeCategoriesValues(values);
+        }
       });
-    }
 
-  </script>
+      function deleteAllValues() {
+        while (categories.options.length > 0) {
+          categories.remove(0);
+        }
+      }
 
-
-</body>
+      function changeCategoriesValues(values) {
+        deleteAllValues();
+        values.forEach((element) => {
+          const option = document.createElement("option");
+          option.value = element.toLowerCase();
+          option.textContent = element;
+          categories.appendChild(option);
+        });
+      }
+    </script>
+  </body>
 </html>
