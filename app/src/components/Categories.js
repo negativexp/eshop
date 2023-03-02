@@ -25,6 +25,7 @@ export function Categories({categories}) {
             {FirstCapitalLetter(item.category)}
           </button>
         ))}
+        {/* <button>...</button>
         <button>...</button>
         <button>...</button>
         <button>...</button>
@@ -45,8 +46,7 @@ export function Categories({categories}) {
         <button>...</button>
         <button>...</button>
         <button>...</button>
-        <button>...</button>
-        <button>...</button>
+        <button>...</button> */}
       </div>
     )
 }
