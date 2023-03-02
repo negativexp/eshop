@@ -13,11 +13,15 @@ export function CheckOut({ cart, setCart }) {
   };
 
   return (
-    <div id="checkout">
-      <h1>items</h1>
+    <div className="checkout">
       <div className="cart-items">
         {cart.length === 0 ? (
-          <p>emtpy</p>
+          <div className="empty-cart">
+            <img src="http://localhost:5000/images/misc/sad.png"/>
+            <h1>Empty cart!</h1>
+            <p>Please add products to your cart!</p>
+          <button onClick={HandleGoBack}>go back</button>
+          </div>
         ) : (
           <>
             {cart.map((item) => (
@@ -29,24 +33,17 @@ export function CheckOut({ cart, setCart }) {
                   <h1>{item.title}</h1>
                   <p>#{item.productID}</p>
                   <p>{item.price} kč</p>
+                  <button onClick={() => handleRemoveItem(item)}>remove</button>
                 </div>
-                <button onClick={() => handleRemoveItem(item)}>remove</button>
               </div>
             ))}
+            <div className="checkout-buttons">
+            <button>Continue</button>
+          <button onClick={HandleGoBack}>go back</button>
+            </div>
           </>
         )}
-
-        {/* {cart.map((item) => (
-            <div className="cart-item">
-              <h1>{item.title}</h1>
-              <p>#{item.productID}</p>
-              <p>{item.price} kč</p>
-              <button onClick={() => handleRemoveItem(item)}>remove</button>
-            </div>
-          ))} */}
       </div>
-      <button onClick={HandleGoBack}>go back</button>
-      <button>Continue</button>
     </div>
   );
 }

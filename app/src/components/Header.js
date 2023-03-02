@@ -20,7 +20,7 @@ export function Header({cartPrice}) {
     <header>
       <div className="logo">
         <img src="http://localhost:5000/images/logo/logo.png"></img>
-        <h1>nezuko</h1>
+        <h1>Nezuko</h1>
       </div>
       <div className="buttons">
         <div className="search">
