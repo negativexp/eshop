@@ -95,6 +95,9 @@
   justify-content: center;
   gap: 10px;
 }
+.addtocart button:hover {
+  cursor: pointer;
+}
 .addtocartImage {
   width: 25px;
   height: 25px;
