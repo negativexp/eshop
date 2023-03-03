@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "./styles/product.css"
 
 export function Product({ product, addToCart }) {
@@ -8,7 +9,8 @@ export function Product({ product, addToCart }) {
           <img src={"http://localhost:5000/images/products/"+ product.productID +".jpg"}/>
         </div>
         <div className="title">
-          <h1>{product.title}</h1>
+          <Link to={product._id}>{product.title}</Link>
+          {/* <h1>{product.title}</h1> */}
         </div>
         <div className="shortdescription">
           <p>{product.shortDescription}</p>

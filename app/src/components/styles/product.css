@@ -39,9 +39,12 @@
     display: flex;
     flex-flow: column;
 }
-.product h1 {
+.product a {
+    display: block;
     margin-top: 20px;
     font-size: 24px;
+    font-weight: bolder;
+    color: black;
 }
 .product .shortdescription {
     flex-grow: 1;

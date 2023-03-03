@@ -8,6 +8,7 @@ import { Categories } from "./components/Categories";
 import { SubCategories } from "./components/SubCategories";
 import { CheckOut } from "./components/CheckOut";
 import { SearchAndCart } from "./components/SearchAndCart";
+import { SingleProduct } from "./components/SingleProduct";
 import "./App.css";
 import "./components/styles/header.css";
 
@@ -45,15 +46,16 @@ function App() {
       <SubCategories categories={APIcategories} />
       <Routes>
         <Route
-          path="/products"
+          path="products"
           element={
               <VisibleProducts addToCart={addToCart} />
           }
         />
         <Route
-          path="/checkout"
+          path="checkout"
           element={<CheckOut cart={cart} setCart={setCart} />}
         />
+        <Route path="products/:productID" element={<SingleProduct/>}/>
       </Routes>
     </BrowserRouter>
   );
