@@ -77,3 +77,60 @@
 .product .price button {
     cursor: pointer;
 }
+.addtocart {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+.addtocart button {
+  padding: 5px 20px;
+  font-size: 18px;
+  font-weight: bolder;
+  background-color: rgb(0, 216, 0);
+  border: none;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+.addtocartImage {
+  width: 25px;
+  height: 25px;
+  background-image: url("http://localhost:5000/images/misc/cart.png");
+  background-position: center;
+  background-size: cover;
+}
+
+.singleProduct {
+  padding: 7%;
+  flex-grow: 1;
+  display: flex;
+  flex-flow: column;
+  gap: 20px;
+}
+.productInfo {
+  padding-left: 30px;
+  border-left: 1px solid black;
+}
+.productInfo p {
+  margin-top: 20px;
+  font-size: 18px;
+}
+.productDetails {
+  display: flex;
+  gap: 20px;
+}
+.productImage {
+  height: 325px;
+}
+.productImage img {
+  height: 100%;
+}
+.loading {
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

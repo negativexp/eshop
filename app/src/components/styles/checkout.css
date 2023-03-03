@@ -17,6 +17,12 @@
     display: flex;
     flex-flow: column;
 }
+.cart-image {
+    min-width: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 .product-info {
     display: flex;
     flex-flow: column;
@@ -27,7 +33,7 @@
     padding: 10px;
     display: flex;
     align-self: center;
-    height: 100px;
+    height: 200px;
 }
 .cart-items {
     display: flex;

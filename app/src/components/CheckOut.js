@@ -8,8 +8,12 @@ export function CheckOut({ cart, setCart }) {
     navigate(-1);
   };
 
-  const handleRemoveItem = (itemToDelete) => {
-    setCart(cart.filter((item) => item !== itemToDelete));
+  const handleRemoveItem = (itemToDeleteID) => {
+    console.log("Yeahj")
+    const storedItems = JSON.parse(localStorage.getItem('cart')) || [];
+    const updatedItems = storedItems.filter((storedItem) => storedItem._id !== itemToDeleteID);
+    localStorage.setItem('cart', JSON.stringify(updatedItems));
+    setCart(updatedItems)
   };
 
   return (
@@ -33,7 +37,7 @@ export function CheckOut({ cart, setCart }) {
                   <h1>{item.title}</h1>
                   <p>#{item.productID}</p>
                   <p>{item.price} kč</p>
-                  <button onClick={() => handleRemoveItem(item)}>remove</button>
+                  <button onClick={() => handleRemoveItem(item._id)}>remove</button>
                 </div>
               </div>
             ))}
