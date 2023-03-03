@@ -42,5 +42,16 @@
     padding: 10px;
 }
 .checkout-buttons {
-    float: right;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 10px;
+}
+.checkout-buttons button {
+    font-size: 18px;
+    font-weight: bolder;
+    padding: 5px 20px;
+}
+.checkout-buttons button:hover {
+    cursor: pointer;
 }

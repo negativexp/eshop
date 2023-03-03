@@ -9,11 +9,13 @@ export function CheckOut({ cart, setCart }) {
   };
 
   const handleRemoveItem = (itemToDeleteID) => {
-    console.log("Yeahj")
-    const storedItems = JSON.parse(localStorage.getItem('cart')) || [];
-    const updatedItems = storedItems.filter((storedItem) => storedItem._id !== itemToDeleteID);
-    localStorage.setItem('cart', JSON.stringify(updatedItems));
-    setCart(updatedItems)
+    console.log("Yeahj");
+    const storedItems = JSON.parse(localStorage.getItem("cart")) || [];
+    const updatedItems = storedItems.filter(
+      (storedItem) => storedItem._id !== itemToDeleteID
+    );
+    localStorage.setItem("cart", JSON.stringify(updatedItems));
+    setCart(updatedItems);
   };
 
   return (
@@ -21,29 +23,37 @@ export function CheckOut({ cart, setCart }) {
       <div className="cart-items">
         {cart.length === 0 ? (
           <div className="empty-cart">
-            <img src="http://localhost:5000/images/misc/sad.png"/>
+            <img src="http://localhost:5000/images/misc/sad.png" />
             <h1>Empty cart!</h1>
             <p>Please add products to your cart!</p>
-          <button onClick={HandleGoBack}>go back</button>
+            <button onClick={HandleGoBack}>go back</button>
           </div>
         ) : (
           <>
             {cart.map((item) => (
               <div className="cart-item">
                 <div className="cart-image">
-                  <img src={"http://localhost:5000/images/products/"+ item.productID +".jpg"}/>
+                  <img
+                    src={
+                      "http://localhost:5000/images/products/" +
+                      item.productID +
+                      ".jpg"
+                    }
+                  />
                 </div>
                 <div className="product-info">
                   <h1>{item.title}</h1>
                   <p>#{item.productID}</p>
                   <p>{item.price} kč</p>
-                  <button onClick={() => handleRemoveItem(item._id)}>remove</button>
+                  <button onClick={() => handleRemoveItem(item._id)}>
+                    remove
+                  </button>
                 </div>
               </div>
             ))}
             <div className="checkout-buttons">
-            <button>Continue</button>
-          <button onClick={HandleGoBack}>go back</button>
+              <button>Continue</button>
+              <button onClick={HandleGoBack}>go back</button>
             </div>
           </>
         )}

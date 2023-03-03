@@ -24,7 +24,6 @@ export function SingleProduct({ addToCart }) {
         </div>
       ) : (
         <>
-          {" "}
           <div className="productDetails">
             <div className="productImage">
               <img

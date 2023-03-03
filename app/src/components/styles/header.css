@@ -23,6 +23,9 @@ header {
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }
+.search button:hover {
+    cursor: pointer;
+}
 .search input {
     padding-left: 10px;
     border: 1px solid black;
@@ -91,6 +94,11 @@ img {
 .header-categories button:hover {
     cursor:pointer;
 }
+.searchHelper {
+    background-color: red;
+    position: absolute;
+    visibility: hidden;
+}
 .sub-category {
     position: absolute;
     background-color: white;
@@ -102,10 +110,22 @@ img {
     border-bottom-left-radius: 7px;
     border-bottom-right-radius: 7px;
     padding: 10px;
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
 }
 .each-subCategory {
-    /* background-color: red; */
-    display: flex;
+
+}
+.each-subCategory button {
+    border: none;
+    font-size: 18px;
+    font-weight: bolder;
+    padding: 0px 10px;
+    text-decoration: underline;
+}
+.each-subCategory button:hover {
+    cursor: pointer;
 }
 #header-subCategories-empty {
     z-index: 1;

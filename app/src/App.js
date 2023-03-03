@@ -14,6 +14,7 @@ import "./components/styles/header.css";
 
 function App() {
   const [APIcategories, setAPIcategories] = useState([]);
+  const [APIproducts, setAPIproducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [cartPrice, setCartPrice] = useState(0);
 
@@ -21,6 +22,7 @@ function App() {
     async function fetchData() {
       //catogeries
       setAPIcategories(await (await fetch("/api/categories")).json());
+      setAPIproducts(await (await fetch("/api/products")).json())
     }
     fetchData();
 
@@ -49,7 +51,7 @@ function App() {
 
   return (
     <BrowserRouter>
-      <Header cartPrice={cartPrice} />
+      <Header cartPrice={cartPrice} categories={APIcategories} products={APIproducts} />
       <Categories categories={APIcategories} />
       <SubCategories categories={APIcategories} />
       <Routes>
