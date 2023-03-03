@@ -16,12 +16,16 @@ export function Header({cartPrice, products, categories}) {
   const [searchHelper, setSearchHelper] = useState([])
   const handleInputChange = (event) => {
     setSearchQuery(event.target.value);
-    const productsFilter = searchForItems(event.target.value, products)
-    const categoriesFilter = categories.filter(item => {
-      return item.category.toLowerCase().includes(searchQuery.toLowerCase()) || 
-    item.subCategories.some(sub => sub.toLowerCase().includes(searchQuery.toLowerCase()));
-    })
-    setSearchHelper([productsFilter, categoriesFilter])
+    if(event.target.value != "") {
+      const productsFilter = searchForItems(event.target.value, products)
+      const categoriesFilter = categories.filter(item => {
+        return item.category.toLowerCase().includes(searchQuery.toLowerCase()) || 
+      item.subCategories.some(sub => sub.toLowerCase().includes(searchQuery.toLowerCase()));
+      })
+      setSearchHelper([productsFilter, categoriesFilter])
+    } else {
+      setSearchHelper([])
+    }
   };
 
   return (
@@ -37,7 +41,7 @@ export function Header({cartPrice, products, categories}) {
             Hledat
           </button>
           {searchHelper.length === 0 ? (
-            <p>nothing</p>
+            <p></p>
           ) : (
             <div className="searchHelper">
             {searchHelper[0].map((item) => (
