@@ -97,7 +97,9 @@ img {
 .searchHelper {
     background-color: red;
     position: absolute;
-    visibility: hidden;
+    visibility: visible;
+    top: 20%;
+    font-weight: bolder;
 }
 .sub-category {
     position: absolute;
