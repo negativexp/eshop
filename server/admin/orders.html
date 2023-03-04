@@ -151,7 +151,6 @@
             <th class="table-cell">Postal Code</th>
             <th class="table-cell">Status</th>
             <th class="table-cell">Address</th>
-            <th class="table-cell">Products ordered</th>
             <th class="table-cell">Price (kč)</th>
           </tr>
         </thead>
@@ -172,6 +171,10 @@
     orders.forEach((order) => {
       const row = document.createElement("tr");
       for (const key in order) {
+        if(key == "orderedProducts") {
+          // we dont want to show all ordered products so we skip it
+          continue;
+        }
         if (Object.hasOwnProperty.call(order, key)) {
           const cell = document.createElement("td");
           if (key === "_id") {
