@@ -27,8 +27,8 @@ function App() {
     fetchData();
 
     if(localStorage.getItem('cart')) {
-      const cart = JSON.parse(localStorage.getItem('cart'))
-      setCart(cart)
+      const tempcart = JSON.parse(localStorage.getItem('cart'))
+      setCart(tempcart)
     }
   }, []);
 

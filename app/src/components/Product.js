@@ -1,6 +1,7 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import "./styles/product.css"
+import { ButtonAddSmall } from "../ButtonAdd";
 
 export function Product({ product, addToCart }) {
     return (
@@ -17,7 +18,7 @@ export function Product({ product, addToCart }) {
         </div>
         <div className="price">
           <h2>{product.price} Kč</h2>
-          <button onClick={() => addToCart(product)}>Add to cart</button>
+          <ButtonAddSmall addToCart={addToCart} product={product}/>
         </div>
       </div>
     );

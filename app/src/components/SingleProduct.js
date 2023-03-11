@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useFetcher, useParams } from "react-router-dom";
+import { ButtonAddBig } from "../ButtonAdd";
 
 export function SingleProduct({ addToCart }) {
   const { productID } = useParams();
@@ -39,12 +40,7 @@ export function SingleProduct({ addToCart }) {
               <p>{product.longDescription}</p>
             </div>
           </div>
-          <div className="addtocart">
-            <button onClick={() => addToCart(product)}>
-              Přidat do košíku
-              <div className="addtocartImage"></div>
-            </button>
-          </div>
+          <ButtonAddBig addToCart={addToCart} product={product}/>
         </>
       )}
     </div>

@@ -9,7 +9,6 @@ export function CheckOut({ cart, setCart }) {
   };
 
   const handleRemoveItem = (itemToDeleteID) => {
-    console.log("Yeahj");
     const storedItems = JSON.parse(localStorage.getItem("cart")) || [];
     const updatedItems = storedItems.filter(
       (storedItem) => storedItem._id !== itemToDeleteID

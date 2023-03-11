@@ -37,13 +37,6 @@ header {
 .search input:focus {
     outline: none;
 }
-.search input:hover > .searchHelper {
-    background-color: red;
-}
-
-.search input:not([disabled]):focus > .searchHelper {
-    background-color: red;
-}
 
 .buttons {
     display: flex;
@@ -103,15 +96,18 @@ img {
 .header-categories button:hover {
     cursor:pointer;
 }
-.searchHelper {
+#searchHelper {
     position: absolute;
+    margin-top: 34px;
+    width: 100px;
+    background-color: white;
     border: 1px solid black;
     border-top: none;
-    background-color: white;
+    width: 350px;
     display: flex;
     flex-flow: column;
     gap: 10px;
-    width: 350px;
+    padding: 10px;
 }
 .sub-category {
     position: absolute;

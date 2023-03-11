@@ -1,0 +1,31 @@
+.buttonAdd {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+.buttonAdd button {
+  padding: 5px 20px;
+  font-size: 18px;
+  font-weight: bolder;
+  background-color: rgb(0, 216, 0);
+  border: none;
+  border-radius: 10px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.buttonAdd button:hover {
+  cursor: pointer;
+}
+
+.buttonAddImage {
+  width: 25px;
+  height: 25px;
+  background-image: url("http://localhost:5000/images/misc/cart.png");
+  background-position: center;
+  background-size: cover;
+}

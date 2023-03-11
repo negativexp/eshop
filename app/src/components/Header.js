@@ -4,6 +4,7 @@ import { searchForItems } from "./searchForItems";
 
 export function Header({ cartPrice, products, categories }) {
   const [searchQuery, setSearchQuery] = useState("");
+  const [searchHelper, setSearchHelper] = useState([]);
   const navigate = useNavigate();
 
   const handleSearchQuery = () => {
@@ -12,22 +13,18 @@ export function Header({ cartPrice, products, categories }) {
     }
   };
 
-  const [searchHelper, setSearchHelper] = useState([]);
   const handleInputChange = (event) => {
     setSearchQuery(event.target.value);
-    if (event.target.value != "") {
-      const productsFilter = searchForItems(event.target.value, products);
-      const categoriesFilter = categories.filter((item) => {
-        return (
-          item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          item.subCategories.some((sub) =>
-            sub.toLowerCase().includes(searchQuery.toLowerCase())
-          )
-        );
+    if(event.target.value != "") {
+      const foundProducts = searchForItems(event.target.value, products)
+      const foundCategories = categories.filter(item => {
+        // Check if the category or any of the subcategories include the search query
+        return item.category.toLowerCase().includes(searchQuery.toLowerCase()) || 
+          item.subCategories.some(sub => sub.toLowerCase().includes(searchQuery.toLowerCase()));
       });
-      setSearchHelper([productsFilter, categoriesFilter]);
+      setSearchHelper(foundProducts)
     } else {
-      setSearchHelper([]);
+      setSearchHelper([])
     }
   };
 
@@ -39,20 +36,17 @@ export function Header({ cartPrice, products, categories }) {
       </div>
       <div className="buttons">
         <div className="search">
-          <div>
-            <input id="searchbar" type="text" onChange={handleInputChange} />
-            {searchHelper.length === 0 ? (
-              <div className="searchHelper"></div>
-            ) : (
-              <div className="searchHelper">
-                {searchHelper[0].map((item) => (
-                  <p>{item.title}</p>
-                ))}
-                {searchHelper[1].map((item) => (
-                  <p>{item.category}</p>
-                ))}
-              </div>
-            )}
+          <input
+            id="searchbar"
+            type="text"
+            autocomplete="off"
+            onChange={handleInputChange}
+          />
+          <div id="searchHelper">
+            {searchHelper.map((item) => (
+              //note: when clicked it does not show the product
+              <Link to={"products/"+item._id}>{item.title}</Link>
+            ))}
           </div>
           <button id="searchbutton" onClick={handleSearchQuery}>
             Hledat
