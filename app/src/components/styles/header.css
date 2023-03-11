@@ -15,6 +15,7 @@ header {
     display: flex;
 }
 .search button {
+    height: 35px;
     padding: 5px;
     font-weight: bolder;
     border: 1px solid black;
@@ -27,13 +28,21 @@ header {
     cursor: pointer;
 }
 .search input {
+    height: 35px;
     padding-left: 10px;
     border: 1px solid black;
     border-right: 0px;
-    width: 250px;
+    width: 350px;
 }
 .search input:focus {
     outline: none;
+}
+.search input:hover > .searchHelper {
+    background-color: red;
+}
+
+.search input:not([disabled]):focus > .searchHelper {
+    background-color: red;
 }
 
 .buttons {
@@ -95,11 +104,14 @@ img {
     cursor:pointer;
 }
 .searchHelper {
-    background-color: red;
     position: absolute;
-    visibility: visible;
-    top: 20%;
-    font-weight: bolder;
+    border: 1px solid black;
+    border-top: none;
+    background-color: white;
+    display: flex;
+    flex-flow: column;
+    gap: 10px;
+    width: 350px;
 }
 .sub-category {
     position: absolute;
