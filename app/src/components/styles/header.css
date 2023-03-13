@@ -37,22 +37,28 @@ header {
 .search input:focus {
     outline: none;
 }
+.search input:focus + #searchHelper {
+    visibility: visible;
+}
 
-/* .search input:not(:focus) + #searchHelper {
-visibility: collapse;
-} */
+#searchHelper:hover {
+    visibility: visible;
+}
 
 .buttons {
     display: flex;
     gap: 10px;
 }
-.buttons a {
+.buttons #cart {
+    height: 35px;
     padding: 5px;
     font-weight: bolder;
     border: 1px solid black;
-    color: black;
     border-radius: 5px;
+    color: black;
     text-decoration: none;
+}
+.buttons a {
 }
 
 header h1 {
@@ -114,7 +120,32 @@ img {
     flex-flow: column;
     gap: 10px;
     padding: 10px;
+    visibility: hidden;
 }
+#searchHelper .item {
+    display: flex;
+    position: relative;
+}
+#searchHelper .item a {
+    position: absolute;
+    width: calc(100% - 100px);
+    left: 110px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: black;
+    text-decoration: none;
+    font-weight: bolder;
+}
+#searchHelper .item a:hover {
+    text-decoration: underline;
+}
+#searchHelper .item img {
+    max-width: 75px;
+    max-height: 75px;
+    width: auto;
+    height: auto;
+}
+
 .sub-category {
     position: absolute;
     background-color: white;

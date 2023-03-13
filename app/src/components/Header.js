@@ -15,23 +15,31 @@ export function Header({ cartPrice, products, categories }) {
 
   const handleInputChange = (event) => {
     setSearchQuery(event.target.value);
-    if(event.target.value != "") {
-      const foundProducts = searchForItems(event.target.value, products)
-      const foundCategories = categories.filter(item => {
+    if (event.target.value != "") {
+      const foundProducts = searchForItems(event.target.value, products);
+      const foundCategories = categories.filter((item) => {
         // Check if the category or any of the subcategories include the search query
-        return item.category.toLowerCase().includes(searchQuery.toLowerCase()) || 
-          item.subCategories.some(sub => sub.toLowerCase().includes(searchQuery.toLowerCase()));
+        return (
+          item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
+          item.subCategories.some((sub) =>
+            sub.toLowerCase().includes(searchQuery.toLowerCase())
+          )
+        );
       });
-      setSearchHelper(foundProducts)
+      setSearchHelper(foundProducts);
     } else {
-      setSearchHelper([])
+      setSearchHelper([]);
     }
   };
 
   const showSearchHelper = () => {
-    const helper = document.getElementById("searchHelper")
-    helper.style.visibility = "visible"
-  }
+    const helper = document.getElementById("searchHelper");
+    helper.style.visibility = "visible";
+  };
+  const hideSearchHelper = () => {
+    const helper = document.getElementById("searchHelper");
+    helper.style.visibility = "hidden";
+  };
 
   return (
     <header>
@@ -46,14 +54,30 @@ export function Header({ cartPrice, products, categories }) {
             type="text"
             autocomplete="off"
             onChange={handleInputChange}
-            onClick={showSearchHelper}
           />
-          {searchHelper.length == 0 ? <></> :           <div id="searchHelper">
-            {searchHelper.map((item) => (
-              //note: when clicked it does not show the product
-              <Link key={item._id} to={"products/"+item._id}>{item.title}</Link>
-            ))}
-          </div>}
+          {searchHelper.length == 0 ? (
+            <div id="searchHelper"></div>
+          ) : (
+            <div
+              id="searchHelper"
+            >
+              {searchHelper.map((item) => (
+                //note: when clicked it does not show the product
+                <div className="item">
+                  <img
+                    src={
+                      "http://localhost:5000/images/products/" +
+                      item.productID +
+                      ".jpg"
+                    }
+                  />
+                  <Link key={item._id} to={"products/" + item._id}>
+                    {item.title}
+                  </Link>
+                </div>
+              ))}
+            </div>
+          )}
 
           {/* <div id="searchHelper">
             {searchHelper.map((item) => (
@@ -65,7 +89,7 @@ export function Header({ cartPrice, products, categories }) {
             Hledat
           </button>
         </div>
-        <Link to="/checkout">Košík ({cartPrice} Kč)</Link>
+        <Link to="/checkout" id="cart">Košík ({cartPrice} Kč)</Link>
       </div>
     </header>
   );
