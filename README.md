@@ -5,11 +5,11 @@
 ## DB Schema
 ### Product
 ```yaml 
-productTitle: string
-productShortDescription: string
-productLongDescription: string
-productCategory: string
-productSubCategory: string
+title: string
+shortDescription: string
+longDescription: string
+category: string
+subCategory: string
 productID: number
 ```
 
