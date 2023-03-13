@@ -13,6 +13,7 @@
     /* box-shadow: 5px 5px 10px 0px black; */
 }
 .checkout {
+    overflow-y: scroll;
     height: 100%;
     display: flex;
     flex-flow: column;
