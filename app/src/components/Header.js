@@ -45,7 +45,7 @@ export function Header({ cartPrice, products, categories }) {
           <div id="searchHelper">
             {searchHelper.map((item) => (
               //note: when clicked it does not show the product
-              <Link to={"products/"+item._id}>{item.title}</Link>
+              <Link key={item._id} to={"products/"+item._id}>{item.title}</Link>
             ))}
           </div>
           <button id="searchbutton" onClick={handleSearchQuery}>

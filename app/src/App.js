@@ -6,9 +6,9 @@ import { Cart } from "./components/Cart";
 import { Notification } from "./components/Notification";
 import { Categories } from "./components/Categories";
 import { SubCategories } from "./components/SubCategories";
-import { CheckOut } from "./components/CheckOut";
+import { CheckOut } from "./components/CheckOut.js";
 import { SearchAndCart } from "./components/SearchAndCart";
-import { SingleProduct } from "./components/SingleProduct";
+import { SingleProduct } from "./components/SingleProduct.js";
 import "./App.css";
 import "./components/styles/header.css";
 
@@ -26,7 +26,7 @@ function App() {
     }
     fetchData();
 
-    if(localStorage.getItem('cart')) {
+    if (localStorage.getItem('cart')) {
       const tempcart = JSON.parse(localStorage.getItem('cart'))
       setCart(tempcart)
     }

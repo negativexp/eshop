@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useFetcher, useParams } from "react-router-dom";
 import { ButtonAddBig } from "../ButtonAdd";
 
-export function SingleProduct({ addToCart }) {
+export function SingleProduct({ addToCart, match }) {
   const { productID } = useParams();
   const [product, setProduct] = useState();
 
@@ -15,7 +15,7 @@ export function SingleProduct({ addToCart }) {
         setProduct(singleProduct)
       
       });
-  }, [0]);
+  }, [productID]);
 
   return (
     <div className="singleProduct">
