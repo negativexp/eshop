@@ -52,7 +52,7 @@ export function Header({ cartPrice, products, categories }) {
           <input
             id="searchbar"
             type="text"
-            autocomplete="off"
+            autoComplete="off"
             onChange={handleInputChange}
           />
           {searchHelper.length == 0 ? (
