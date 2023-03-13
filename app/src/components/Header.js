@@ -45,7 +45,7 @@ export function Header({ cartPrice, products, categories }) {
     <header>
       <div className="logo">
         <img src="http://localhost:5000/images/logo/logo.png"></img>
-        <h1>Nezuko</h1>
+        <Link to={"/"}>Nezuko</Link>
       </div>
       <div className="buttons">
         <div className="search">

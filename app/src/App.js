@@ -9,6 +9,7 @@ import { SubCategories } from "./components/SubCategories";
 import { CheckOut } from "./components/CheckOut.js";
 import { SearchAndCart } from "./components/SearchAndCart";
 import { SingleProduct } from "./components/SingleProduct.js";
+import { DeafultPage } from "./components/DeafultPage";
 import "./App.css";
 import "./components/styles/header.css";
 
@@ -55,6 +56,7 @@ function App() {
       <Categories categories={APIcategories} />
       <SubCategories categories={APIcategories} />
       <Routes>
+        <Route path="/" element={<DeafultPage/>} />
         <Route
           path="products"
           element={<VisibleProducts addToCart={addToCart} />}

@@ -61,8 +61,12 @@ header {
 .buttons a {
 }
 
-header h1 {
+header .logo a {
     padding-left: 10px;
+    color: black;
+    text-decoration: none;
+    font-weight: bolder;
+    font-size: 38px;
 }
 
 img {
