@@ -38,6 +38,10 @@ header {
     outline: none;
 }
 
+/* .search input:not(:focus) + #searchHelper {
+visibility: collapse;
+} */
+
 .buttons {
     display: flex;
     gap: 10px;
@@ -97,6 +101,8 @@ img {
     cursor:pointer;
 }
 #searchHelper {
+    overflow: hidden;
+    z-index: 100;
     position: absolute;
     margin-top: 34px;
     width: 100px;

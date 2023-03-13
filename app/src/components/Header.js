@@ -28,6 +28,11 @@ export function Header({ cartPrice, products, categories }) {
     }
   };
 
+  const showSearchHelper = () => {
+    const helper = document.getElementById("searchHelper")
+    helper.style.visibility = "visible"
+  }
+
   return (
     <header>
       <div className="logo">
@@ -41,13 +46,21 @@ export function Header({ cartPrice, products, categories }) {
             type="text"
             autocomplete="off"
             onChange={handleInputChange}
+            onClick={showSearchHelper}
           />
-          <div id="searchHelper">
+          {searchHelper.length == 0 ? <></> :           <div id="searchHelper">
             {searchHelper.map((item) => (
               //note: when clicked it does not show the product
               <Link key={item._id} to={"products/"+item._id}>{item.title}</Link>
             ))}
-          </div>
+          </div>}
+
+          {/* <div id="searchHelper">
+            {searchHelper.map((item) => (
+              //note: when clicked it does not show the product
+              <Link key={item._id} to={"products/"+item._id}>{item.title}</Link>
+            ))}
+          </div> */}
           <button id="searchbutton" onClick={handleSearchQuery}>
             Hledat
           </button>
