@@ -6,7 +6,7 @@ import { Cart } from "./components/Cart";
 import { Notification } from "./components/Notification";
 import { Categories } from "./components/Categories";
 import { SubCategories } from "./components/SubCategories";
-import { CheckOut } from "./components/CheckOut.js";
+import { CheckOut, CheckoutDetails } from "./components/CheckOut.js";
 import { SearchAndCart } from "./components/SearchAndCart";
 import { SingleProduct } from "./components/SingleProduct.js";
 import { DeafultPage } from "./components/DeafultPage";
@@ -69,6 +69,7 @@ function App() {
           path="products/:productID"
           element={<SingleProduct addToCart={addToCart} />}
         />
+        <Route path="/checkout/details" element={<CheckoutDetails/>}/>
       </Routes>
     </BrowserRouter>
   );

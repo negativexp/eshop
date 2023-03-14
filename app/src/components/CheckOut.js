@@ -1,5 +1,5 @@
 import React from "react";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./styles/checkout.css";
 
 export function CheckOut({ cart, setCart }) {
@@ -18,7 +18,8 @@ export function CheckOut({ cart, setCart }) {
   };
 
   return (
-    <div className="checkout">
+    <div id="checkout">
+      <h1>step 1 out of 3</h1>
       <div className="cart-items">
         {cart.length === 0 ? (
           <div className="empty-cart">
@@ -51,12 +52,58 @@ export function CheckOut({ cart, setCart }) {
               </div>
             ))}
             <div className="checkout-buttons">
-              <button>Continue</button>
-              <button onClick={HandleGoBack}>go back</button>
+              <Link to={"/checkout/details"}>Pokračovat</Link>
+              <button onClick={HandleGoBack}>Nazpátek</button>
             </div>
           </>
         )}
       </div>
     </div>
   );
+}
+
+export function CheckoutDetails() {
+  return (
+    <div id="checkout">
+      <h1>step 2 out of 3</h1>
+      <div className="details">
+      <label for="name">Jméno</label>
+      <input
+        type="text"
+        placeholder=""
+      />
+      <label for="name">Příjmení</label>
+      <input
+        type="text"
+        placeholder=""
+      />
+      <label for="name">Email</label>
+      <input
+        type="text"
+        placeholder=""
+      />
+      <label for="name">telefoní číslo</label>
+      <input
+        type="text"
+        placeholder=""
+      />
+      <label for="name">Město</label>
+      <input
+        type="text"
+        placeholder=""
+      />
+      <label for="name">PSČ</label>
+      <input
+        type="text"
+        placeholder=""
+      />
+      <label for="name">Adresa</label>
+      <input
+        type="text"
+        placeholder=""
+      />
+      </div>
+      
+    </div>
+  )
 }

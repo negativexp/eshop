@@ -15,7 +15,7 @@ export function Header({ cartPrice, products, categories }) {
 
   const handleInputChange = (event) => {
     setSearchQuery(event.target.value);
-    if (event.target.value != "") {
+    if (event.target.value !== "") {
       const foundProducts = searchForItems(event.target.value, products);
       const foundCategories = categories.filter((item) => {
         // Check if the category or any of the subcategories include the search query

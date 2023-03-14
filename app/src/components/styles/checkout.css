@@ -12,7 +12,7 @@
     gap: 20px;
     /* box-shadow: 5px 5px 10px 0px black; */
 }
-.checkout {
+#checkout {
     overflow-y: scroll;
     height: 100%;
     display: flex;
@@ -55,4 +55,14 @@
 }
 .checkout-buttons button:hover {
     cursor: pointer;
+}
+
+#checkout .details {
+    display: flex;
+    flex-flow: column;
+    width: 40%;
+    margin: 0 auto;
+}
+#checkout .details input[type="text"] {
+    margin-bottom: 20px;
 }
