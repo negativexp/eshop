@@ -1,0 +1,17 @@
+h1 {
+}
+#deafultpage {
+    display: flex;
+    flex-flow: column;
+    gap: 30px;
+    padding: 50px;
+}
+#recommendeditems {
+    border: 1px solid black;
+}
+#newitems {
+    border: 1px solid black;
+}
+#topsellingitems {
+    border: 1px solid black;
+}

@@ -14,6 +14,7 @@ export function Product({ product, addToCart }) {
           {/* <h1>{product.title}</h1> */}
         </div>
         <div className="shortdescription">
+          <p>ID: #{product.productID}</p>
           <p>{product.shortDescription}</p>
         </div>
         <div className="price">
