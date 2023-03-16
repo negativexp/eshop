@@ -19,7 +19,28 @@ export function CheckOut({ cart, setCart }) {
 
   return (
     <div id="checkout">
-      <h1>step 1 out of 3</h1>
+
+      <div className="checkout-progress">
+        <div className="checkout-progress-point">
+          <h1>Produkty</h1>
+          <div className="checkout-progress-img">
+            <img src="http://localhost:5000/images/misc/greencircle.png" />
+          </div>
+        </div>
+        <div className="checkout-progress-point">
+          <h1>Detaily</h1>
+          <div className="checkout-progress-img">
+            <img src="http://localhost:5000/images/misc/graycircle.png" style={{ width: "30px" }} />
+          </div>
+        </div>
+        <div className="checkout-progress-point">
+          <h1>Souhrn</h1>
+          <div className="checkout-progress-img">
+            <img src="http://localhost:5000/images/misc/graycircle.png" style={{ width: "30px" }} />
+          </div>
+        </div>
+      </div>
+
       <div className="cart-items">
         {cart.length === 0 ? (
           <div className="empty-cart">
@@ -41,7 +62,7 @@ export function CheckOut({ cart, setCart }) {
                     }
                   />
                 </div>
-                <div className="product-info">
+                <div className="cart-item-info">
                   <h1>{item.title}</h1>
                   <p>#{item.productID}</p>
                   <p>{item.price} kč</p>
@@ -52,8 +73,8 @@ export function CheckOut({ cart, setCart }) {
               </div>
             ))}
             <div className="checkout-buttons">
-              <Link to={"/checkout/details"}>Pokračovat</Link>
               <button onClick={HandleGoBack}>Nazpátek</button>
+              <Link to={"/checkout/details"}>Pokračovat</Link>
             </div>
           </>
         )}
@@ -65,45 +86,106 @@ export function CheckOut({ cart, setCart }) {
 export function CheckoutDetails() {
   return (
     <div id="checkout">
-      <h1>step 2 out of 3</h1>
-      <div className="details">
-      <label for="name">Jméno</label>
-      <input
-        type="text"
-        placeholder=""
-      />
-      <label for="name">Příjmení</label>
-      <input
-        type="text"
-        placeholder=""
-      />
-      <label for="name">Email</label>
-      <input
-        type="text"
-        placeholder=""
-      />
-      <label for="name">telefoní číslo</label>
-      <input
-        type="text"
-        placeholder=""
-      />
-      <label for="name">Město</label>
-      <input
-        type="text"
-        placeholder=""
-      />
-      <label for="name">PSČ</label>
-      <input
-        type="text"
-        placeholder=""
-      />
-      <label for="name">Adresa</label>
-      <input
-        type="text"
-        placeholder=""
-      />
+
+      <div className="checkout-progress">
+        <div className="checkout-progress-point">
+          <h1>Produkty</h1>
+          <div className="checkout-progress-img">
+            <img src="http://localhost:5000/images/misc/graycircle.png" style={{ width: "30px" }} />
+
+          </div>
+        </div>
+        <div className="checkout-progress-point">
+          <h1>Detaily</h1>
+          <div className="checkout-progress-img">
+            <img src="http://localhost:5000/images/misc/greencircle.png" />
+          </div>
+        </div>
+        <div className="checkout-progress-point">
+          <h1>Souhrn</h1>
+          <div className="checkout-progress-img">
+            <img src="http://localhost:5000/images/misc/graycircle.png" style={{ width: "30px" }} />
+          </div>
+        </div>
       </div>
-      
+
+      <div className="details">
+        <div className="double">
+          <div className="input">
+            <label for="name">Jméno:</label>
+            <input type="text" placeholder="" />
+          </div>
+          <div className="input">
+            <label for="name">Příjmení:</label>
+            <input type="text" placeholder="" />
+          </div>
+        </div>
+        <div className="input">
+          <label for="name">Email:</label>
+          <input type="text" placeholder="" />
+        </div>
+        <div className="double">
+          <div className="input">
+            <label for="name">telefoní číslo:</label>
+            <input type="text" placeholder="" />
+          </div>
+          <div className="input">
+            <label for="name">Město:</label>
+            <input type="text" placeholder="" />
+          </div>
+        </div>
+        <div className="double">
+          <div className="input">
+            <label for="name">PSČ:</label>
+            <input type="text" placeholder="" />
+          </div>
+          <div className="input">
+            <label for="name">Adresa:</label>
+            <input type="text" placeholder="" />
+          </div>
+        </div>
+
+      </div>
+      <div className="checkout-buttons">
+        <Link to={"/checkout/"}>Nazpátek</Link>
+        <Link to={"/checkout/summary"}>Pokračovat</Link>
+      </div>
+
+    </div>
+  )
+}
+
+export function CheckoutSummary() {
+  return (
+    <div id="checkout">
+      <div className="checkout-progress">
+        <div className="checkout-progress-point">
+          <h1>Produkty</h1>
+          <div className="checkout-progress-img">
+            <img src="http://localhost:5000/images/misc/graycircle.png" style={{ width: "30px" }} />
+
+          </div>
+        </div>
+        <div className="checkout-progress-point">
+          <h1>Detaily</h1>
+          <div className="checkout-progress-img">
+            <img src="http://localhost:5000/images/misc/graycircle.png" style={{ width: "30px" }} />
+          </div>
+        </div>
+        <div className="checkout-progress-point">
+          <h1>Souhrn</h1>
+          <div className="checkout-progress-img">
+            <img src="http://localhost:5000/images/misc/greencircle.png" />
+          </div>
+        </div>
+      </div>
+      <div className="summary">
+        <h1>summary</h1>
+      </div>
+      <div className="checkout-buttons">
+        <Link to={"/checkout/details"}>Nazpátek</Link>
+        <button>Odeslat</button>
+      </div>
     </div>
   )
 }
