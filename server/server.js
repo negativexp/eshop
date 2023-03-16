@@ -5,8 +5,10 @@ const { connect } = require('http2');
 const fs = require('fs');
 const bodyParser = require('body-parser');
 const path = require('path');
+const cors = require("cors")
 const app = express()
 
+app.use(cors())
 app.use(bodyParser.json({limit: '50mb'}));
 app.use(bodyParser.urlencoded({limit: '50mb', extended: true}));
 // app.use(bodyParser.json());
@@ -22,8 +24,12 @@ const client = new MongoClient(uri, {
 })
 
 async function connectToMongoDB() {
-    await client.connect()
-    console.log("[+] MongoDB connected")
+    try {
+        await client.connect()
+        console.log("[+] MongoDB connected")
+    } catch (error) {
+        console.log("[-] MongoDB NOT connected!")
+    }
 }
 connectToMongoDB()
 
@@ -110,6 +116,7 @@ app.post("/api/addproduct/", async (req, res) => {
 app.post("/api/addorder/", async (req, res) => {
     const collection = client.db("eshop").collection("orders");
     // TODO: add order into DB
+    console.log(req.body.order)
     res.status(200).send("");
 });
 
