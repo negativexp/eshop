@@ -21,6 +21,8 @@ header {
     border: 1px solid black;
     border-left: 0px;
 
+    background-color: transparent;
+
     border-top-right-radius: 5px;
     border-bottom-right-radius: 5px;
 }

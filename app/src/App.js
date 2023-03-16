@@ -6,8 +6,7 @@ import { Cart } from "./components/Cart";
 import { Notification } from "./components/Notification";
 import { Categories } from "./components/Categories";
 import { SubCategories } from "./components/SubCategories";
-import { CheckOut, CheckoutDetails } from "./components/CheckOut.js";
-import { SearchAndCart } from "./components/SearchAndCart";
+import { CheckOut, CheckoutDetails, CheckoutSummary } from "./components/CheckOut.js";
 import { SingleProduct } from "./components/SingleProduct.js";
 import { DeafultPage } from "./components/DeafultPage";
 import "./App.css";
@@ -18,6 +17,7 @@ function App() {
   const [APIproducts, setAPIproducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [cartPrice, setCartPrice] = useState(0);
+  // const [lastAddedItem, setLastAddedItem] = useState()
 
   useEffect(() => {
     async function fetchData() {
@@ -38,6 +38,7 @@ function App() {
     if (!storedItems.find((storedItem) => storedItem._id === item._id)) {
       storedItems.push(item);
       localStorage.setItem('cart', JSON.stringify(storedItems));
+      // setLastAddedItem(item.title)
     }
     setCart(JSON.parse(localStorage.getItem('cart')) || [])
   }
@@ -55,6 +56,7 @@ function App() {
       <Header cartPrice={cartPrice} categories={APIcategories} products={APIproducts} />
       <Categories categories={APIcategories} />
       <SubCategories categories={APIcategories} />
+      {/* <Notification lastAddedItem={lastAddedItem}/> */}
       <Routes>
         <Route path="/" element={<DeafultPage/>} />
         <Route
@@ -70,6 +72,7 @@ function App() {
           element={<SingleProduct addToCart={addToCart} />}
         />
         <Route path="/checkout/details" element={<CheckoutDetails/>}/>
+        <Route path="/checkout/summary" element={<CheckoutSummary/>}/>
       </Routes>
     </BrowserRouter>
   );
