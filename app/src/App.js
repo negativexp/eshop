@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useFetcher, json } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useFetcher, json, UNSAFE_DataRouterStateContext } from "react-router-dom";
 import { Header } from "./components/Header";
 import { VisibleProducts } from "./components/VisibleProducts";
 import { Cart } from "./components/Cart";
@@ -17,7 +17,12 @@ function App() {
   const [APIproducts, setAPIproducts] = useState([]);
   const [cart, setCart] = useState([]);
   const [cartPrice, setCartPrice] = useState(0);
-  // const [lastAddedItem, setLastAddedItem] = useState()
+
+  const [details, setDetails] = useState({});
+
+  useEffect(() => {
+    console.log(details)
+  }, [details])
 
   useEffect(() => {
     async function fetchData() {
@@ -71,8 +76,8 @@ function App() {
           path="products/:productID"
           element={<SingleProduct addToCart={addToCart} />}
         />
-        <Route path="/checkout/details" element={<CheckoutDetails/>}/>
-        <Route path="/checkout/summary" element={<CheckoutSummary/>}/>
+        <Route path="checkout/details" element={<CheckoutDetails setDetails={setDetails}/>}/>
+        <Route path="checkout/summary" element={<CheckoutSummary details={details}/>}/>
       </Routes>
     </BrowserRouter>
   );

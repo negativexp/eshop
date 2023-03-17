@@ -1,5 +1,5 @@
-import React from "react";
-import { useNavigate, Link } from "react-router-dom";
+import React, {useState} from "react";
+import { useNavigate, Link, UNSAFE_DataRouterStateContext } from "react-router-dom";
 import "./styles/checkout.css";
 
 export function CheckOut({ cart, setCart }) {
@@ -45,9 +45,9 @@ export function CheckOut({ cart, setCart }) {
         {cart.length === 0 ? (
           <div className="empty-cart">
             <img src="http://localhost:5000/images/misc/sad.png" />
-            <h1>Empty cart!</h1>
-            <p>Please add products to your cart!</p>
-            <button onClick={HandleGoBack}>go back</button>
+            <h1>Prazdnej košík!</h1>
+            <p>Prosím přidejte produkty do vašho košíku!</p>
+            <button onClick={HandleGoBack}>Zpátky</button>
           </div>
         ) : (
           <>
@@ -73,7 +73,7 @@ export function CheckOut({ cart, setCart }) {
               </div>
             ))}
             <div className="checkout-buttons">
-              <button onClick={HandleGoBack}>Nazpátek</button>
+              {/* <button onClick={HandleGoBack}>Nazpátek</button> */}
               <Link to={"/checkout/details"}>Pokračovat</Link>
             </div>
           </>
@@ -83,7 +83,24 @@ export function CheckOut({ cart, setCart }) {
   );
 }
 
-export function CheckoutDetails() {
+export function CheckoutDetails({ setDetails }) {
+
+  const saveDetails = () => {
+    const data = {
+      firstName: document.getElementById("firstName").value,
+      lastName: document.getElementById("lastName").value,
+      email: document.getElementById("email").value,
+      phoneNumber: document.getElementById("phoneNumber").value,
+      city: document.getElementById("city").value,
+      postalCode: document.getElementById("postalCode").value,
+      address: document.getElementById("address").value
+    }
+    setDetails(data)
+    // window.location = "summary"
+  }
+
+  
+
   return (
     <div id="checkout">
 
@@ -112,50 +129,49 @@ export function CheckoutDetails() {
       <div className="details">
         <div className="double">
           <div className="input">
-            <label for="name">Jméno:</label>
-            <input type="text" placeholder="" />
+            <label>Jméno:</label>
+            <input type="text" id="firstName" placeholder="" required/>
           </div>
           <div className="input">
-            <label for="name">Příjmení:</label>
-            <input type="text" placeholder="" />
+            <label>Příjmení:</label>
+            <input type="text" id="lastName" placeholder="" required/>
           </div>
         </div>
         <div className="input">
-          <label for="name">Email:</label>
-          <input type="text" placeholder="" />
+          <label>Email:</label>
+          <input type="text" id="email" placeholder="" required/>
         </div>
         <div className="double">
           <div className="input">
-            <label for="name">telefoní číslo:</label>
-            <input type="text" placeholder="" />
+            <label>telefoní číslo:</label>
+            <input type="text" id="phoneNumber" placeholder="" required/>
           </div>
           <div className="input">
-            <label for="name">Město:</label>
-            <input type="text" placeholder="" />
+            <label>Město:</label>
+            <input type="text" id="city" placeholder="" required/>
           </div>
         </div>
         <div className="double">
           <div className="input">
-            <label for="name">PSČ:</label>
-            <input type="text" placeholder="" />
+            <label>PSČ:</label>
+            <input type="text" id="postalCode" placeholder="" required/>
           </div>
           <div className="input">
-            <label for="name">Adresa:</label>
-            <input type="text" placeholder="" />
+            <label>Adresa:</label>
+            <input type="text" id="address" placeholder="" required/>
           </div>
         </div>
-
       </div>
       <div className="checkout-buttons">
         <Link to={"/checkout/"}>Nazpátek</Link>
-        <Link to={"/checkout/summary"}>Pokračovat</Link>
+        <button onClick={saveDetails}>Pokračovat</button>
       </div>
 
     </div>
   )
 }
 
-export function CheckoutSummary() {
+export function CheckoutSummary({ details }) {
   return (
     <div id="checkout">
       <div className="checkout-progress">
@@ -180,7 +196,13 @@ export function CheckoutSummary() {
         </div>
       </div>
       <div className="summary">
-        <h1>summary</h1>
+        <div className="summary-details">
+          <h1>detials</h1>
+          <h1>{details.firstName}</h1>
+        </div>
+        <div className="summary-products">
+          <h1>products</h1>
+        </div>
       </div>
       <div className="checkout-buttons">
         <Link to={"/checkout/details"}>Nazpátek</Link>
