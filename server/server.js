@@ -137,5 +137,5 @@ app.post("/api/editorder/", async (req, res) => {
 
 // listen
 app.listen(5000, () => {
-    console.log("[+] server started on port 5000")
+    console.log("[+] Server started on port 5000")
 });
