@@ -54,7 +54,7 @@ function App() {
         });
     } else {
       if(storedItems.find((storedItem) => storedItem._id === item._id).quantity > storedItems.find((storedItem) => storedItem._id === item._id).cartQuantity) {
-        console.log(storedItems.find((storedItem) => storedItem._id === item._id).cartQuantity++)
+        storedItems.find((storedItem) => storedItem._id === item._id).cartQuantity++
         localStorage.setItem('cart', JSON.stringify(storedItems));
         toast.info(item.title + " byl přidán do košíku (x" + storedItems.find((storedItem) => storedItem._id === item._id).cartQuantity + ")", {
           position: "bottom-right",
