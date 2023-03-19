@@ -182,6 +182,14 @@
           placeholder="Enter product price (only value)"
         />
 
+        <label for="quantity">Quantity</label>
+        <input
+          type="text"
+          id="quantity"
+          name="quantity"
+          placeholder="Enter product quantity (only value)"
+        />
+
         <!-- added: category and categories -->
         <label for="category">Product Category</label>
         <select id="category" name="category">
@@ -247,6 +255,7 @@
           price: price.value,
           category: category.value,
           subCategory: categories.value,
+          quantity: quantity.value,
           image64: base64
         };
 

@@ -16,6 +16,7 @@ export function Product({ product, addToCart }) {
         <div className="shortdescription">
           <p>ID: #{product.productID}</p>
           <p>{product.shortDescription}</p>
+          <p>quantity: {product.quantity}</p>
         </div>
         <div className="price">
           <h2>{product.price} Kč</h2>

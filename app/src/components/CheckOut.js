@@ -66,8 +66,8 @@ export function CheckOut({ cart, setCart }) {
                   <h1>{item.title}</h1>
                   <p>#{item.productID}</p>
                   <p>{item.price} kč</p>
-                  <p>quantity: {item.quantity}</p>
-                  <p>( total: {item.price * item.quantity} kč )</p>
+                  <p>quantity: {item.cartQuantity}</p>
+                  <p>( total: {item.price * item.cartQuantity} kč )</p>
                   <button onClick={() => handleRemoveItem(item._id)}>
                     remove
                   </button>
