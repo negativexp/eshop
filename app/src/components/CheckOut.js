@@ -85,7 +85,7 @@ export function CheckOut({ cart, setCart }) {
   );
 }
 
-export function CheckoutDetails({ setDetails }) {
+export function CheckoutDetails({ cart }) {
 
   const saveDetails = () => {
     const data = {
@@ -95,10 +95,15 @@ export function CheckoutDetails({ setDetails }) {
       phoneNumber: document.getElementById("phoneNumber").value,
       city: document.getElementById("city").value,
       postalCode: document.getElementById("postalCode").value,
-      address: document.getElementById("address").value
+      address: document.getElementById("address").value,
+      cart: cart
     }
-    setDetails(data)
-    // window.location = "summary"
+    localStorage.setItem('order', JSON.stringify(data));
+    window.location = "summary"
+  }
+
+  if(cart.length == 0) {
+    window.location = "/checkout"
   }
 
   
@@ -173,7 +178,14 @@ export function CheckoutDetails({ setDetails }) {
   )
 }
 
-export function CheckoutSummary({ details }) {
+export function CheckoutSummary({}) {
+
+  const details = JSON.parse(localStorage.getItem('order'))
+
+  if(details == null) {
+    window.location = "/checkout"
+  }
+
   return (
     <div id="checkout">
       <div className="checkout-progress">
@@ -200,7 +212,7 @@ export function CheckoutSummary({ details }) {
       <div className="summary">
         <div className="summary-details">
           <h1>detials</h1>
-          <h1>{details.firstName}</h1>
+          {/* <h1>{details.firstName}</h1> */}
         </div>
         <div className="summary-products">
           <h1>products</h1>
