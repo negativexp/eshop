@@ -12,6 +12,9 @@ import { DeafultPage } from "./components/DeafultPage";
 import "./App.css";
 import "./components/styles/header.css";
 
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
+
 function App() {
   const [APIcategories, setAPIcategories] = useState([]);
   const [APIproducts, setAPIproducts] = useState([]);
@@ -19,10 +22,6 @@ function App() {
   const [cartPrice, setCartPrice] = useState(0);
 
   const [details, setDetails] = useState({});
-
-  useEffect(() => {
-    console.log(details)
-  }, [details])
 
   useEffect(() => {
     async function fetchData() {
@@ -43,7 +42,34 @@ function App() {
     if (!storedItems.find((storedItem) => storedItem._id === item._id)) {
       storedItems.push(item);
       localStorage.setItem('cart', JSON.stringify(storedItems));
-      // setLastAddedItem(item.title)
+
+      toast(item.title + " byl přidán do košíku", {
+        position: "bottom-right",
+        autoClose:  1800,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "dark",
+        });
+    } else {
+
+      if(storedItems[storedItems.length - 1].quantity == undefined) {
+        storedItems[storedItems.length - 1].quantity = 2
+      } else storedItems[storedItems.length - 1].quantity = storedItems[storedItems.length - 1].quantity + 1
+
+      localStorage.setItem('cart', JSON.stringify(storedItems));
+      console.log(storedItems[storedItems.length - 1])
+
+      toast(item.title + " byl přidán do košíku (x" + storedItems[storedItems.length - 1].quantity+")", {
+        position: "bottom-right",
+        autoClose:  1800,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "dark",
+        });
     }
     setCart(JSON.parse(localStorage.getItem('cart')) || [])
   }
@@ -51,7 +77,9 @@ function App() {
   useEffect(() => {
     var final = 0
     cart.forEach(el => {
-      final += parseInt(el.price)
+      if(el.quantity > 1) {
+        final += parseInt(el.quantity) * parseInt(el.price)
+      } else final += parseInt(el.price)
     })
     setCartPrice(final)
   }, [cart])
@@ -61,6 +89,7 @@ function App() {
       <Header cartPrice={cartPrice} categories={APIcategories} products={APIproducts} />
       <Categories categories={APIcategories} />
       <SubCategories categories={APIcategories} />
+      <ToastContainer />
       {/* <Notification lastAddedItem={lastAddedItem}/> */}
       <Routes>
         <Route path="/" element={<DeafultPage/>} />
