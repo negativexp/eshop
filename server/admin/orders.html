@@ -149,9 +149,10 @@
             <th class="table-cell">Phone Number</th>
             <th class="table-cell">City</th>
             <th class="table-cell">Postal Code</th>
-            <th class="table-cell">Status</th>
             <th class="table-cell">Address</th>
-            <th class="table-cell">Price (kč)</th>
+            <th class="table-cell">Produkty</th>
+            <!-- <th class="table-cell">Status</th> -->
+            <!-- <th class="table-cell">Price (kč)</th> -->
           </tr>
         </thead>
         <tbody></tbody>
@@ -184,7 +185,13 @@
             link.style.color = "blue";
             cell.appendChild(link);
           } else {
-            cell.textContent = order[key];
+            if(Array.isArray(order[key])) {
+              order[key].forEach(el => {
+                cell.textContent += el.title + "\n"
+              })
+            } else {
+              cell.textContent = order[key];
+            }
           }
           row.appendChild(cell);
         }

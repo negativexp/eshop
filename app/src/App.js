@@ -21,8 +21,6 @@ function App() {
   const [cart, setCart] = useState([]);
   const [cartPrice, setCartPrice] = useState(0);
 
-  const [details, setDetails] = useState({});
-
   useEffect(() => {
     async function fetchData() {
       //catogeries
@@ -90,6 +88,8 @@ function App() {
     setCartPrice(final)
   }, [cart])
 
+  // useEffect(() => { console.log(details) },[details])
+
   return (
     <BrowserRouter>
       <Header cartPrice={cartPrice} categories={APIcategories} products={APIproducts} />
@@ -112,7 +112,7 @@ function App() {
           element={<SingleProduct addToCart={addToCart} />}
         />
         <Route path="checkout/details" element={<CheckoutDetails cart={cart}/>}/>
-        <Route path="checkout/summary" element={<CheckoutSummary details={details} cartPrice={cartPrice}/>}/>
+        <Route path="checkout/summary" element={<CheckoutSummary cartPrice={cartPrice}/>}/>
       </Routes>
     </BrowserRouter>
   );

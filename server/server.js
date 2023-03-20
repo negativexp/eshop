@@ -116,7 +116,17 @@ app.post("/api/addproduct/", async (req, res) => {
 app.post("/api/addorder/", async (req, res) => {
     const collection = client.db("eshop").collection("orders");
     // TODO: add order into DB
-    console.log(req.body.order)
+    // TODO: make the cart in orderdata simpler - DONE
+    var tempArr = []
+    req.body.orderdata.cart.forEach(element => {
+        tempArr.push({_id: element._id, productID: element.productID, cartQuantity: element.cartQuantity, title: element.title})
+    });
+    req.body.orderdata.cart = tempArr
+    console.log(req.body.orderdata)
+
+    await collection.insertOne(req.body.orderdata)
+
+
     res.status(200).send("");
 });
 

@@ -2,8 +2,9 @@ import React, { useEffect, useState } from "react";
 import {
   useNavigate,
   Link,
-  UNSAFE_DataRouterStateContext,
+  json,
 } from "react-router-dom";
+import { useToast } from "react-toastify";
 import "./styles/checkout.css";
 
 export function CheckOut({ cart, setCart }) {
@@ -96,8 +97,6 @@ export function CheckOut({ cart, setCart }) {
 
 export function CheckoutDetails({ cart }) {
 
-  console.log(localStorage.getItem("order"))
-
   const saveDetails = () => {
     const data = {
       firstName: document.getElementById("firstName").value,
@@ -107,18 +106,32 @@ export function CheckoutDetails({ cart }) {
       city: document.getElementById("city").value,
       postalCode: document.getElementById("postalCode").value,
       address: document.getElementById("address").value,
-      cart: cart,
+      cart: cart
     };
-    localStorage.setItem("order", JSON.stringify(data));
+    localStorage.setItem("order", JSON.stringify(data))
     window.location = "summary";
   };
 
-  if (cart.length == 0) {
+  if (cart.length < 1) {
     window.location = "/checkout";
   }
 
+  const onload = () => {
+    const details = JSON.parse(localStorage.getItem("order"))
+    if(details !== null) {
+      document.getElementById("firstName").value = details.firstName
+      document.getElementById("lastName").value = details.lastName
+      document.getElementById("email").value = details.email
+      document.getElementById("phoneNumber").value = details.phoneNumber
+      document.getElementById("city").value = details.city
+      document.getElementById("postalCode").value = details.postalCode
+      document.getElementById("address").value = details.address
+    }
+  }
+
   return (
-    <div id="checkout">
+    //note: its retarted but it works
+    <div id="checkout" onLoad={onload}>
       <div className="checkout-progress">
         <div className="checkout-progress-point">
           <h1>Produkty</h1>
@@ -191,10 +204,20 @@ export function CheckoutDetails({ cart }) {
 }
 
 export function CheckoutSummary({ cartPrice }) {
-  const details = JSON.parse(localStorage.getItem("order"));
+  const details = JSON.parse(localStorage.getItem("order"))
 
   if (details == null) {
     window.location = "/checkout";
+  }
+
+  const sendOrder = () => {
+    const apiUrl = new URL("http://localhost:5000/api/addorder/")
+    fetch(apiUrl, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ orderdata: details }),
+    });
+    localStorage.removeItem("order")
   }
 
   return (
@@ -268,9 +291,11 @@ export function CheckoutSummary({ cartPrice }) {
 
           <h1>Produkty</h1>
           <ul>
-            {details.cart.map(item => (
-              <li>{item.title}</li>
-            ))}
+            {/* {details.cart.map(item => (
+              <>
+                {item.cartQuantity > 1 ? <li>{item.title} (x{item.cartQuantity})</li> : <li>{item.title}</li> }
+              </>
+            ))} */}
           </ul>
 
           <h1>Celková cena</h1>
@@ -281,7 +306,7 @@ export function CheckoutSummary({ cartPrice }) {
       </div>
       <div className="checkout-buttons">
         <Link to={"/checkout/details"}>Nazpátek</Link>
-        <button>Odeslat</button>
+        <button onClick={sendOrder}>Odeslat</button>
       </div>
     </div>
   );
