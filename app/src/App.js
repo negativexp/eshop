@@ -112,7 +112,7 @@ function App() {
           element={<SingleProduct addToCart={addToCart} />}
         />
         <Route path="checkout/details" element={<CheckoutDetails cart={cart}/>}/>
-        <Route path="checkout/summary" element={<CheckoutSummary details={details}/>}/>
+        <Route path="checkout/summary" element={<CheckoutSummary details={details} cartPrice={cartPrice}/>}/>
       </Routes>
     </BrowserRouter>
   );

@@ -159,8 +159,22 @@
 }
 
 #checkout .summary {
-    background-color: red;
-    width: 65%;
+    width: 100%;
     margin: 0 auto;
     padding: 25px;
+}
+
+#checkout .summary h1 {
+    text-align: center;
+}
+#checkout .summary h2 {
+    text-align: center;
+}
+#checkout .summary ul {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+#checkout .summary li {
+    text-align: center;
 }

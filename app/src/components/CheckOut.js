@@ -1,5 +1,9 @@
-import React, {useState} from "react";
-import { useNavigate, Link, UNSAFE_DataRouterStateContext } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import {
+  useNavigate,
+  Link,
+  UNSAFE_DataRouterStateContext,
+} from "react-router-dom";
 import "./styles/checkout.css";
 
 export function CheckOut({ cart, setCart }) {
@@ -19,7 +23,6 @@ export function CheckOut({ cart, setCart }) {
 
   return (
     <div id="checkout">
-
       <div className="checkout-progress">
         <div className="checkout-progress-point">
           <h1>Produkty</h1>
@@ -30,13 +33,19 @@ export function CheckOut({ cart, setCart }) {
         <div className="checkout-progress-point">
           <h1>Detaily</h1>
           <div className="checkout-progress-img">
-            <img src="http://localhost:5000/images/misc/graycircle.png" style={{ width: "30px" }} />
+            <img
+              src="http://localhost:5000/images/misc/graycircle.png"
+              style={{ width: "30px" }}
+            />
           </div>
         </div>
         <div className="checkout-progress-point">
           <h1>Souhrn</h1>
           <div className="checkout-progress-img">
-            <img src="http://localhost:5000/images/misc/graycircle.png" style={{ width: "30px" }} />
+            <img
+              src="http://localhost:5000/images/misc/graycircle.png"
+              style={{ width: "30px" }}
+            />
           </div>
         </div>
       </div>
@@ -87,6 +96,8 @@ export function CheckOut({ cart, setCart }) {
 
 export function CheckoutDetails({ cart }) {
 
+  console.log(localStorage.getItem("order"))
+
   const saveDetails = () => {
     const data = {
       firstName: document.getElementById("firstName").value,
@@ -96,27 +107,26 @@ export function CheckoutDetails({ cart }) {
       city: document.getElementById("city").value,
       postalCode: document.getElementById("postalCode").value,
       address: document.getElementById("address").value,
-      cart: cart
-    }
-    localStorage.setItem('order', JSON.stringify(data));
-    window.location = "summary"
-  }
+      cart: cart,
+    };
+    localStorage.setItem("order", JSON.stringify(data));
+    window.location = "summary";
+  };
 
-  if(cart.length == 0) {
-    window.location = "/checkout"
+  if (cart.length == 0) {
+    window.location = "/checkout";
   }
-
-  
 
   return (
     <div id="checkout">
-
       <div className="checkout-progress">
         <div className="checkout-progress-point">
           <h1>Produkty</h1>
           <div className="checkout-progress-img">
-            <img src="http://localhost:5000/images/misc/graycircle.png" style={{ width: "30px" }} />
-
+            <img
+              src="http://localhost:5000/images/misc/graycircle.png"
+              style={{ width: "30px" }}
+            />
           </div>
         </div>
         <div className="checkout-progress-point">
@@ -128,7 +138,10 @@ export function CheckoutDetails({ cart }) {
         <div className="checkout-progress-point">
           <h1>Souhrn</h1>
           <div className="checkout-progress-img">
-            <img src="http://localhost:5000/images/misc/graycircle.png" style={{ width: "30px" }} />
+            <img
+              src="http://localhost:5000/images/misc/graycircle.png"
+              style={{ width: "30px" }}
+            />
           </div>
         </div>
       </div>
@@ -137,35 +150,35 @@ export function CheckoutDetails({ cart }) {
         <div className="double">
           <div className="input">
             <label>Jméno:</label>
-            <input type="text" id="firstName" placeholder="" required/>
+            <input type="text" id="firstName" placeholder="" required />
           </div>
           <div className="input">
             <label>Příjmení:</label>
-            <input type="text" id="lastName" placeholder="" required/>
+            <input type="text" id="lastName" placeholder="" required />
           </div>
         </div>
         <div className="input">
           <label>Email:</label>
-          <input type="text" id="email" placeholder="" required/>
+          <input type="text" id="email" placeholder="" required />
         </div>
         <div className="double">
           <div className="input">
             <label>telefoní číslo:</label>
-            <input type="text" id="phoneNumber" placeholder="" required/>
+            <input type="text" id="phoneNumber" placeholder="" required />
           </div>
           <div className="input">
             <label>Město:</label>
-            <input type="text" id="city" placeholder="" required/>
+            <input type="text" id="city" placeholder="" required />
           </div>
         </div>
         <div className="double">
           <div className="input">
             <label>PSČ:</label>
-            <input type="text" id="postalCode" placeholder="" required/>
+            <input type="text" id="postalCode" placeholder="" required />
           </div>
           <div className="input">
             <label>Adresa:</label>
-            <input type="text" id="address" placeholder="" required/>
+            <input type="text" id="address" placeholder="" required />
           </div>
         </div>
       </div>
@@ -173,17 +186,15 @@ export function CheckoutDetails({ cart }) {
         <Link to={"/checkout/"}>Nazpátek</Link>
         <button onClick={saveDetails}>Pokračovat</button>
       </div>
-
     </div>
-  )
+  );
 }
 
-export function CheckoutSummary({}) {
+export function CheckoutSummary({ cartPrice }) {
+  const details = JSON.parse(localStorage.getItem("order"));
 
-  const details = JSON.parse(localStorage.getItem('order'))
-
-  if(details == null) {
-    window.location = "/checkout"
+  if (details == null) {
+    window.location = "/checkout";
   }
 
   return (
@@ -192,14 +203,19 @@ export function CheckoutSummary({}) {
         <div className="checkout-progress-point">
           <h1>Produkty</h1>
           <div className="checkout-progress-img">
-            <img src="http://localhost:5000/images/misc/graycircle.png" style={{ width: "30px" }} />
-
+            <img
+              src="http://localhost:5000/images/misc/graycircle.png"
+              style={{ width: "30px" }}
+            />
           </div>
         </div>
         <div className="checkout-progress-point">
           <h1>Detaily</h1>
           <div className="checkout-progress-img">
-            <img src="http://localhost:5000/images/misc/graycircle.png" style={{ width: "30px" }} />
+            <img
+              src="http://localhost:5000/images/misc/graycircle.png"
+              style={{ width: "30px" }}
+            />
           </div>
         </div>
         <div className="checkout-progress-point">
@@ -211,11 +227,56 @@ export function CheckoutSummary({}) {
       </div>
       <div className="summary">
         <div className="summary-details">
-          <h1>detials</h1>
+          <h1>Detaily</h1>
+
+          <div className="details">
+            <div className="double">
+              <div className="input">
+                <label>Jméno:</label>
+                <input type="text" value={details.firstName} id="firstName" placeholder="" disabled />
+              </div>
+              <div className="input">
+                <label>Příjmení:</label>
+                <input type="text" value={details.lastName} id="lastName" placeholder="" disabled />
+              </div>
+            </div>
+            <div className="input">
+              <label>Email:</label>
+              <input type="text" id="email" value={details.email} placeholder="" disabled />
+            </div>
+            <div className="double">
+              <div className="input">
+                <label>telefoní číslo:</label>
+                <input type="text" id="phoneNumber" value={details.phoneNumber} placeholder="" disabled />
+              </div>
+              <div className="input">
+                <label>Město:</label>
+                <input type="text" id="city" value={details.city} placeholder="" disabled />
+              </div>
+            </div>
+            <div className="double">
+              <div className="input">
+                <label>PSČ:</label>
+                <input type="text" id="postalCode" value={details.postalCode} placeholder="" disabled />
+              </div>
+              <div className="input">
+                <label>Adresa:</label>
+                <input type="text" id="address" value={details.address} placeholder="" disabled />
+              </div>
+            </div>
+          </div>
+
+          <h1>Produkty</h1>
+          <ul>
+            {details.cart.map(item => (
+              <li>{item.title}</li>
+            ))}
+          </ul>
+
+          <h1>Celková cena</h1>
+          <h2>{cartPrice} Kč</h2>
+
           {/* <h1>{details.firstName}</h1> */}
-        </div>
-        <div className="summary-products">
-          <h1>products</h1>
         </div>
       </div>
       <div className="checkout-buttons">
@@ -223,5 +284,5 @@ export function CheckoutSummary({}) {
         <button>Odeslat</button>
       </div>
     </div>
-  )
+  );
 }
