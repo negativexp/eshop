@@ -211,8 +211,8 @@ export function CheckoutSummary({ cartPrice }) {
       //reset cart and order data
       localStorage.removeItem("order")
       localStorage.removeItem("cart")
+      window.location.reload()
     }
-    localStorage.removeItem("order")
   }
 
   return (
