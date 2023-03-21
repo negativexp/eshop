@@ -1,8 +1,5 @@
 import React from "react";
-import {
-  useNavigate,
-  Link,
-} from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 import "./styles/checkout.css";
 
 export function CheckOut({ cart, setCart }) {
@@ -298,8 +295,6 @@ export function CheckoutSummary({ cartPrice }) {
 
           <h1>Celková cena</h1>
           <h2>{cartPrice} Kč</h2>
-
-          {/* <h1>{details.firstName}</h1> */}
         </div>
       </div>
       <div className="checkout-buttons">

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useFetcher, useParams } from "react-router-dom";
 import { ButtonAddBig } from "../ButtonAdd";
 
-export function SingleProduct({ addToCart, match }) {
+export function SingleProduct({ addToCart, products }) {
   const { productID } = useParams();
   const [product, setProduct] = useState();
 
@@ -10,10 +10,8 @@ export function SingleProduct({ addToCart, match }) {
     fetch("/api/products")
       .then((res) => res.json())
       .then((data) => {
-
         const singleProduct = data.find((product) => product._id === productID);
         setProduct(singleProduct)
-      
       });
   }, [productID]);
 
