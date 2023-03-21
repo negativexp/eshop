@@ -2,6 +2,7 @@
 A working (without payment section) e-shop using React.js for client side code, Node.js for server code and MongoDB for database.
 
 ## Dev building
+For dev building you also need MongoDB Atlas!
 1. Build frontend in app folder `npm run build`
 2. Run server `npm run dev`
 
