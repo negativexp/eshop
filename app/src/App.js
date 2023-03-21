@@ -22,6 +22,7 @@ function App() {
 
   //we fetch data from our server
   //NOTE: we can ask server for the data we need so we don't need to fetch everything
+  //NOTE: I'm gonna do it like that so we don't need to fetch more information we don't need
   useEffect(() => {
     async function fetchData() {
       setAPIcategories(await (await fetch("/api/categories")).json());
