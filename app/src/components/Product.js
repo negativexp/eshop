@@ -15,7 +15,9 @@ export function Product({ product, addToCart }) {
         </div>
         <div className="shortdescription">
           <p>ID: #{product.productID}</p>
-          <p>quantity: {product.quantity}</p>
+          <>
+            {product.quantity == 0 ? <p>Množství: VYPRODÁNO</p> : <p>Množství: {product.quantity}</p>}
+          </>
           <p>{product.shortDescription}</p>
         </div>
         <div className="price">

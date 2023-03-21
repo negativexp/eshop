@@ -1,10 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import {
   useNavigate,
   Link,
-  json,
 } from "react-router-dom";
-import { useToast } from "react-toastify";
 import "./styles/checkout.css";
 
 export function CheckOut({ cart, setCart }) {
@@ -63,23 +61,17 @@ export function CheckOut({ cart, setCart }) {
           <>
             {cart.map((item) => (
               <div className="cart-item">
-                <div className="cart-image">
-                  <img
-                    src={
-                      "http://localhost:5000/images/products/" +
-                      item.productID +
-                      ".jpg"
-                    }
-                  />
+                <div className="cart-item-image">
+                  <img src={"http://localhost:5000/images/products/"+item.productID +".jpg"}/>
                 </div>
                 <div className="cart-item-info">
+                  <div></div>
                   <h1>{item.title}</h1>
-                  <p>#{item.productID}</p>
-                  <p>{item.price} kč</p>
-                  <p>quantity: {item.cartQuantity}</p>
-                  <p>( total: {item.price * item.cartQuantity} kč )</p>
+                  <h2>#{item.productID}</h2>
+                  <h3>{item.price * item.cartQuantity} Kč ({item.price} Kč)</h3>
+                  <h4>Množství: {item.cartQuantity}</h4>
                   <button onClick={() => handleRemoveItem(item._id)}>
-                    remove
+                    Odstranit
                   </button>
                 </div>
               </div>
@@ -210,13 +202,19 @@ export function CheckoutSummary({ cartPrice }) {
     window.location = "/checkout";
   }
 
-  const sendOrder = () => {
+  async function sendOrder() {
     const apiUrl = new URL("http://localhost:5000/api/addorder/")
-    fetch(apiUrl, {
+    const response = await fetch(apiUrl, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({ orderdata: details }),
     });
+    if(response.status === 200) {
+      window.alert("Order has been placed!")
+      //reset cart and order data
+      localStorage.removeItem("order")
+      localStorage.removeItem("cart")
+    }
     localStorage.removeItem("order")
   }
 
@@ -291,11 +289,11 @@ export function CheckoutSummary({ cartPrice }) {
 
           <h1>Produkty</h1>
           <ul>
-            {/* {details.cart.map(item => (
+            {details.cart.map((item) => (
               <>
-                {item.cartQuantity > 1 ? <li>{item.title} (x{item.cartQuantity})</li> : <li>{item.title}</li> }
+                {item.cartQuantity > 1 ? <li>{item.title} (x{item.cartQuantity})</li> : <li>{item.title}</li>}
               </>
-            ))} */}
+            ))}
           </ul>
 
           <h1>Celková cena</h1>

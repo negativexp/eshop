@@ -37,24 +37,12 @@ function App() {
 
   function addToCart(item) {
     const storedItems = JSON.parse(localStorage.getItem('cart')) || [];
-    if (!storedItems.find((storedItem) => storedItem._id === item._id)) {
-      storedItems.push({_id: item._id, productID: item.productID, price: item.price, cartQuantity: 1, quantity: item.quantity, title: item.title});
-      localStorage.setItem('cart', JSON.stringify(storedItems));
-
-      toast.info(item.title + " byl přidán do košíku", {
-        position: "bottom-right",
-        autoClose:  1800,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: false,
-        theme: "dark",
-        });
-    } else {
-      if(storedItems.find((storedItem) => storedItem._id === item._id).quantity > storedItems.find((storedItem) => storedItem._id === item._id).cartQuantity) {
-        storedItems.find((storedItem) => storedItem._id === item._id).cartQuantity++
+    if(item.quantity != 0) {
+      if (!storedItems.find((storedItem) => storedItem._id === item._id)) {
+        storedItems.push({_id: item._id, productID: item.productID, price: item.price, cartQuantity: 1, quantity: item.quantity, title: item.title});
         localStorage.setItem('cart', JSON.stringify(storedItems));
-        toast.info(item.title + " byl přidán do košíku (x" + storedItems.find((storedItem) => storedItem._id === item._id).cartQuantity + ")", {
+  
+        toast.info(item.title + " byl přidán do košíku", {
           position: "bottom-right",
           autoClose:  1800,
           hideProgressBar: true,
@@ -64,16 +52,40 @@ function App() {
           theme: "dark",
           });
       } else {
-        toast.warn("U produktu " + item.title + " jste překročil limit!", {
-          position: "bottom-right",
-          autoClose:  1800,
-          hideProgressBar: true,
-          closeOnClick: true,
-          pauseOnHover: false,
-          draggable: false,
-          theme: "dark",
-          });
+        if(storedItems.find((storedItem) => storedItem._id === item._id).quantity > storedItems.find((storedItem) => storedItem._id === item._id).cartQuantity) {
+          storedItems.find((storedItem) => storedItem._id === item._id).cartQuantity++
+          localStorage.setItem('cart', JSON.stringify(storedItems));
+          toast.info(item.title + " byl přidán do košíku (x" + storedItems.find((storedItem) => storedItem._id === item._id).cartQuantity + ")", {
+            position: "bottom-right",
+            autoClose:  1800,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "dark",
+            });
+        } else {
+          toast.warn("U produktu " + item.title + " jste překročil limit!", {
+            position: "bottom-right",
+            autoClose:  1800,
+            hideProgressBar: true,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            theme: "dark",
+            });
+        }
       }
+    } else {
+      toast.error("Produktu " + item.title + " je vyprodanej!", {
+        position: "bottom-right",
+        autoClose:  1800,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        theme: "dark",
+        });
     }
     setCart(JSON.parse(localStorage.getItem('cart')) || [])
   }
