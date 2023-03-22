@@ -17,15 +17,6 @@ export function Header({ cartPrice, products, categories }) {
     setSearchQuery(event.target.value);
     if (event.target.value !== "") {
       const foundProducts = searchForItems(event.target.value, products);
-      const foundCategories = categories.filter((item) => {
-        // Check if the category or any of the subcategories include the search query
-        return (
-          item.category.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          item.subCategories.some((sub) =>
-            sub.toLowerCase().includes(searchQuery.toLowerCase())
-          )
-        );
-      });
       setSearchHelper(foundProducts);
     } else {
       setSearchHelper([]);
